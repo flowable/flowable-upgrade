@@ -94,7 +94,7 @@ public class UpgradeUtil {
       }
     }
     
-    // Buidling the process engine will also recreate the schema (in that particular version)
+    // Building the process engine will also recreate the schema (in that particular version)
     return processEngineConfiguration.buildProcessEngine();
   }
   
