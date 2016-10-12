@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Activiti - Upgrade</name>
-	<groupId>org.activiti</groupId>
-	<artifactId>activiti-upgrade-qa</artifactId>
+	<name>Flowable - Upgrade</name>
+	<groupId>org.flowable</groupId>
+	<artifactId>flowable-upgrade-qa</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 
@@ -14,22 +14,23 @@
 	</properties>
 
 	<modules>
-		<module>activiti-upgrade-5.11</module>
-		<module>activiti-upgrade-5.12</module>
-		<module>activiti-upgrade-5.13</module>
-		<module>activiti-upgrade-5.14</module>
-		<module>activiti-upgrade-5.15</module>
-		<module>activiti-upgrade-5.15.1</module>
-		<module>activiti-upgrade-5.16</module>
-		<module>activiti-upgrade-5.16.1</module>
-		<module>activiti-upgrade-5.16.2</module>
-		<module>activiti-upgrade-5.16.3</module>
-		<module>activiti-upgrade-5.17.0</module>
-		<module>activiti-upgrade-5.18.0</module>
-		<module>activiti-upgrade-5.19.0</module>
-		<module>activiti-upgrade-5.20.0</module>
-		<module>activiti-upgrade-5.21.0</module>
-		<module>activiti-upgrade-6.0.0</module>
+		<module>flowable-upgrade-5.11</module>
+		<module>flowable-upgrade-5.12</module>
+		<module>flowable-upgrade-5.13</module>
+		<module>flowable-upgrade-5.14</module>
+		<module>flowable-upgrade-5.15</module>
+		<module>flowable-upgrade-5.15.1</module>
+		<module>flowable-upgrade-5.16</module>
+		<module>flowable-upgrade-5.16.1</module>
+		<module>flowable-upgrade-5.16.2</module>
+		<module>flowable-upgrade-5.16.3</module>
+		<module>flowable-upgrade-5.17.0</module>
+		<module>flowable-upgrade-5.18.0</module>
+		<module>flowable-upgrade-5.19.0</module>
+		<module>flowable-upgrade-5.20.0</module>
+		<module>flowable-upgrade-5.21.0</module>
+		<module>flowable-upgrade-5.22.0</module>
+		<module>flowable-upgrade-6.0.0</module>
 	</modules>
 
 	<dependencies>
@@ -127,25 +128,20 @@
 			<url>https://maven.alfresco.com/nexus/content/groups/public</url>
 		</repository>
 		<repository>
-
 			<id>alfresco.snapshot.repo</id>
-
 			<url>https://maven.alfresco.com/nexus/content/repositories/activiti-snapshots/</url>
-
 			<snapshots>
-
 				<enabled>true</enabled>
-
 			</snapshots>
 		</repository>
 	</repositories>
 
 	<profiles>
 		<profile>
-			<id>oldVersion</id>
+			<id>generateData</id>
 			<activation>
 				<property>
-					<name>oldVersion</name>
+					<name>generateData</name>
 				</property>
 			</activation>
 			<build>
@@ -196,12 +192,12 @@
 										<copy file="src/main/resources/activiti.cfg.xml" todir="target/classes"
 											overwrite="true">
 											<filterset
-												filtersfile="${user.home}/.activiti/upgrade/build.${database}.properties" />
+												filtersfile="${user.home}/.flowable/jdbc/build.${database}.properties" />
 										</copy>
 										<copy file="src/main/resources/activiti.cfg.xml" todir="target/test-classes"
 											overwrite="true">
 											<filterset
-												filtersfile="${user.home}/.activiti/upgrade/build.${database}.properties" />
+												filtersfile="${user.home}/.flowable/jdbc/build.${database}.properties" />
 										</copy>
 									</tasks>
 								</configuration>

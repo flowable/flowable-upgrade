@@ -6,18 +6,18 @@ if [[ "$3" == "" ]] ; then
    	
 else
 
-	OLD_VERSION_MODULE="activiti-upgrade-$1"
+	OLD_VERSION_MODULE="flowable-upgrade-$1"
     echo "Old version module: $OLD_VERSION_MODULE"
-	NEW_VERSION_MODULE="activiti-upgrade-$2"
+	NEW_VERSION_MODULE="flowable-upgrade-$2"
     echo "Old version module: $NEW_VERSION_MODULE"
     DATABASE=$3
     echo "Database type: $DATABASE"
         
 	echo
-    echo "Running old version module: generating Activiti data for Activiti $1"
+    echo "Running old version module: generating data for version $1"
     echo
     cd $OLD_VERSION_MODULE
-    mvn -Ddatabase=$DATABASE -DoldVersion=$1 -Dmaven.test.skip=true clean test
+    mvn -Ddatabase=$DATABASE -DoldVersion=$1 -Dmaven.test.skip=true -DgenerateData=true clean test
     
     STATUS=$?
 	if [ $STATUS -eq 0 ] 
