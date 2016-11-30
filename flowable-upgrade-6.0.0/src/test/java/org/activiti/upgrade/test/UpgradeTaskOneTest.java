@@ -22,11 +22,13 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.task.Task;
+import org.activiti.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
 import org.activiti.upgrade.test.helper.UpgradeTestCase;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+@RunOnlyWithTestDataFromVersion(versions = {"5.17.0", "5.18.0", "5.19.0", "5.20.0", "5.21.0", "5.22.0"})
 public class UpgradeTaskOneTest extends UpgradeTestCase {
 
   @Test

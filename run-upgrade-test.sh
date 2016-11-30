@@ -17,7 +17,11 @@ else
     echo "Running old version module: generating data for version $1"
     echo
     cd $OLD_VERSION_MODULE
-    mvn -Ddatabase=$DATABASE -DoldVersion=$1 -Dmaven.test.skip=true -DgenerateData=true clean test
+    if [[ "$DATABASE" == "oracle" ]] ; then
+    	mvn -Ddatabasewithschema=$DATABASE -DoldVersion=$1 -Dmaven.test.skip=true -DgenerateData=true clean test
+    else
+    	mvn -Ddatabase=$DATABASE -DoldVersion=$1 -Dmaven.test.skip=true -DgenerateData=true clean test
+    fi
     
     STATUS=$?
 	if [ $STATUS -eq 0 ] 
@@ -27,7 +31,11 @@ else
 		echo
     	cd ..
     	cd $NEW_VERSION_MODULE
-    	mvn -Ddatabase=$DATABASE -DoldVersion=$1 clean test
+    	if [[ "$DATABASE" == "oracle" ]] ; then
+    		mvn -Ddatabasewithschema=$DATABASE -DoldVersion=$1 clean test
+		else
+	    	mvn -Ddatabase=$DATABASE -DoldVersion=$1 clean test
+	    fi
 	else
 		echo
 		echo
