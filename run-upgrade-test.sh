@@ -18,7 +18,7 @@ else
     echo
     cd $OLD_VERSION_MODULE
     if [[ "$DATABASE" == "oracle" ]] ; then
-    	mvn -Ddatabasewithschema=$DATABASE -DoldVersion=$1 -Dmaven.test.skip=true -DgenerateData=true clean test
+    	mvn -Ddatabasewithschema=$DATABASE -Duser.timezone=GMT -DoldVersion=$1 -Dmaven.test.skip=true -DgenerateData=true clean test
     else
     	mvn -Ddatabase=$DATABASE -DoldVersion=$1 -Dmaven.test.skip=true -DgenerateData=true clean test
     fi
@@ -32,7 +32,7 @@ else
     	cd ..
     	cd $NEW_VERSION_MODULE
     	if [[ "$DATABASE" == "oracle" ]] ; then
-    		mvn -Ddatabasewithschema=$DATABASE -DoldVersion=$1 clean test
+    		mvn -Ddatabasewithschema=$DATABASE -Duser.timezone=GMT -DoldVersion=$1 clean test
 		else
 	    	mvn -Ddatabase=$DATABASE -DoldVersion=$1 clean test
 	    fi
