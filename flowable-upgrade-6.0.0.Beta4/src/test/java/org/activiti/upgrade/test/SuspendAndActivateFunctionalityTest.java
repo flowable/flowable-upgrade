@@ -12,12 +12,10 @@ package org.activiti.upgrade.test;
  * limitations under the License.
  */
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import org.activiti.engine.ActivitiException;
 
-import org.activiti.engine.common.api.ActivitiException;
+import static org.junit.Assert.*;
+
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;

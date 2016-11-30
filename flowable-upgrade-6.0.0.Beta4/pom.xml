@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Flowable Upgrade 5.22.0</name>
-	<artifactId>flowable-upgrade-5.22.0</artifactId>
+	<name>Flowable Upgrade 6.0.0.Beta4</name>
+	<artifactId>flowable-upgrade-6.0.0.Beta4</artifactId>
 	<packaging>jar</packaging>
 
     <parent>
@@ -16,10 +16,16 @@
 	<dependencies>
 		<!-- Activiti dependencies -->
 		<dependency>
-			<groupId>org.flowable</groupId>
-			<artifactId>flowable-engine</artifactId>
-			<version>5.22.0</version>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>6.0.0.Beta4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti5-compatibility</artifactId>
+			<version>6.0.0.Beta4</version>
 		</dependency>
 	</dependencies>
+	
 	
 </project>

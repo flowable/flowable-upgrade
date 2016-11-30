@@ -23,13 +23,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.common.impl.Page;
-import org.activiti.engine.common.impl.persistence.entity.Entity;
 import org.activiti.engine.impl.EventSubscriptionQueryImpl;
+import org.activiti.engine.impl.Page;
 import org.activiti.engine.impl.db.EntityDependencyOrder;
 import org.activiti.engine.impl.interceptor.Command;
 import org.activiti.engine.impl.interceptor.CommandContext;
 import org.activiti.engine.impl.persistence.entity.AttachmentEntity;
+import org.activiti.engine.impl.persistence.entity.Entity;
 import org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl;
 import org.activiti.engine.impl.persistence.entity.HistoricIdentityLinkEntity;
 import org.activiti.engine.impl.persistence.entity.HistoricScopeInstanceEntityImpl;
