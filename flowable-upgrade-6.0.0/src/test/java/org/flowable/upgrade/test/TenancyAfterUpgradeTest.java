@@ -1,16 +1,16 @@
-package org.activiti.upgrade.test;
+package org.flowable.upgrade.test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.activiti.bpmn.model.BpmnModel;
-import org.activiti.bpmn.model.EndEvent;
-import org.activiti.bpmn.model.SequenceFlow;
-import org.activiti.bpmn.model.StartEvent;
-import org.activiti.bpmn.model.UserTask;
-import org.activiti.engine.repository.Deployment;
-import org.activiti.engine.repository.ProcessDefinition;
-import org.activiti.upgrade.test.helper.UpgradeTestCase;
+import org.flowable.bpmn.model.BpmnModel;
+import org.flowable.bpmn.model.EndEvent;
+import org.flowable.bpmn.model.SequenceFlow;
+import org.flowable.bpmn.model.StartEvent;
+import org.flowable.bpmn.model.UserTask;
+import org.flowable.engine.repository.Deployment;
+import org.flowable.engine.repository.ProcessDefinition;
+import org.flowable.upgrade.test.helper.UpgradeTestCase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -230,7 +230,7 @@ public class TenancyAfterUpgradeTest extends UpgradeTestCase {
    */
   public BpmnModel createOneTaskTestProcess() {
   	BpmnModel model = new BpmnModel();
-  	org.activiti.bpmn.model.Process process = new org.activiti.bpmn.model.Process();
+  	org.flowable.bpmn.model.Process process = new org.flowable.bpmn.model.Process();
     model.addProcess(process);
     process.setId("oneTaskProcess");
     process.setName("The one task process");
@@ -257,7 +257,7 @@ public class TenancyAfterUpgradeTest extends UpgradeTestCase {
   
   public BpmnModel createTwoTasksTestProcess() {
   	BpmnModel model = new BpmnModel();
-  	org.activiti.bpmn.model.Process process = new org.activiti.bpmn.model.Process();
+  	org.flowable.bpmn.model.Process process = new org.flowable.bpmn.model.Process();
     model.addProcess(process);
     process.setId("twoTasksProcess");
     process.setName("The two tasks process");

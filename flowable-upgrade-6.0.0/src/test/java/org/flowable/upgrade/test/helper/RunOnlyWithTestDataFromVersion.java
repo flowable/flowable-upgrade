@@ -1,4 +1,4 @@
-package org.activiti.upgrade.test.helper;
+package org.flowable.upgrade.test.helper;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

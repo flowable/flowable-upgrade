@@ -10,13 +10,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.upgrade.test;
+package org.flowable.upgrade.test;
 
-import org.activiti.engine.history.HistoricProcessInstance;
-import org.activiti.engine.runtime.ProcessInstance;
-import org.activiti.engine.task.Task;
-import org.activiti.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
-import org.activiti.upgrade.test.helper.UpgradeTestCase;
+import org.flowable.engine.history.HistoricProcessInstance;
+import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.engine.task.Task;
+import org.flowable.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
+import org.flowable.upgrade.test.helper.UpgradeTestCase;
 import org.junit.Assert;
 import org.junit.Test;
 

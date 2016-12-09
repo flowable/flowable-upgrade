@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.upgrade.helper;
+package org.flowable.upgrade.helper;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,25 +22,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.common.impl.Page;
-import org.activiti.engine.common.impl.persistence.entity.Entity;
-import org.activiti.engine.impl.EventSubscriptionQueryImpl;
-import org.activiti.engine.impl.db.EntityDependencyOrder;
-import org.activiti.engine.impl.interceptor.Command;
-import org.activiti.engine.impl.interceptor.CommandContext;
-import org.activiti.engine.impl.persistence.entity.AttachmentEntity;
-import org.activiti.engine.impl.persistence.entity.ExecutionEntityImpl;
-import org.activiti.engine.impl.persistence.entity.HistoricIdentityLinkEntity;
-import org.activiti.engine.impl.persistence.entity.HistoricScopeInstanceEntityImpl;
-import org.activiti.engine.impl.persistence.entity.IdentityLinkEntity;
-import org.activiti.engine.impl.persistence.entity.PropertyEntityImpl;
-import org.activiti.engine.impl.persistence.entity.TableDataManagerImpl;
-import org.activiti.engine.impl.persistence.entity.VariableInstanceEntity;
-import org.activiti.engine.repository.Deployment;
-import org.activiti.engine.runtime.Execution;
-import org.activiti.engine.runtime.ProcessInstance;
-import org.activiti.engine.task.Task;
+import org.flowable.engine.ProcessEngine;
+import org.flowable.engine.common.impl.Page;
+import org.flowable.engine.common.impl.persistence.entity.Entity;
+import org.flowable.engine.impl.EventSubscriptionQueryImpl;
+import org.flowable.engine.impl.db.EntityDependencyOrder;
+import org.flowable.engine.impl.interceptor.Command;
+import org.flowable.engine.impl.interceptor.CommandContext;
+import org.flowable.engine.impl.persistence.entity.AttachmentEntity;
+import org.flowable.engine.impl.persistence.entity.ExecutionEntityImpl;
+import org.flowable.engine.impl.persistence.entity.HistoricIdentityLinkEntity;
+import org.flowable.engine.impl.persistence.entity.HistoricScopeInstanceEntityImpl;
+import org.flowable.engine.impl.persistence.entity.IdentityLinkEntity;
+import org.flowable.engine.impl.persistence.entity.PropertyEntityImpl;
+import org.flowable.engine.impl.persistence.entity.TableDataManagerImpl;
+import org.flowable.engine.impl.persistence.entity.VariableInstanceEntity;
+import org.flowable.engine.repository.Deployment;
+import org.flowable.engine.runtime.Execution;
+import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.engine.task.Task;
 
 /**
  * Customized {@link DatabaseOperation} that deletes all data in the correct

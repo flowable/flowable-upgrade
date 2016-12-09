@@ -3,7 +3,7 @@
   <process id="activiti5-failing-job" name="failingJob" isExecutable="true">
   	<startEvent id="start"></startEvent>
   	<sequenceFlow sourceRef="start" targetRef="serviceTask"></sequenceFlow>
-  	<serviceTask id="serviceTask" activiti:class="org.activiti.ThrowsException" activiti:async="true"></serviceTask>
+  	<serviceTask id="serviceTask" activiti:class="org.flowable.ThrowsException" activiti:async="true"></serviceTask>
   	<sequenceFlow sourceRef="serviceTask" targetRef="task"></sequenceFlow>
   	<userTask id="task"></userTask>
   	<sequenceFlow sourceRef="task" targetRef="end"></sequenceFlow>

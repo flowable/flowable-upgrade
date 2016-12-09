@@ -1,4 +1,4 @@
-package org.activiti.upgrade.test;
+package org.flowable.upgrade.test;
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,10 +18,10 @@ import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
-import org.activiti.engine.repository.Deployment;
-import org.activiti.engine.repository.ProcessDefinition;
-import org.activiti.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
-import org.activiti.upgrade.test.helper.UpgradeTestCase;
+import org.flowable.engine.repository.Deployment;
+import org.flowable.engine.repository.ProcessDefinition;
+import org.flowable.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
+import org.flowable.upgrade.test.helper.UpgradeTestCase;
 import org.junit.Test;
 
 /**

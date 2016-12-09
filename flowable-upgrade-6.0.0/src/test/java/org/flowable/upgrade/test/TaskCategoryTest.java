@@ -1,4 +1,4 @@
-package org.activiti.upgrade.test;
+package org.flowable.upgrade.test;
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,15 @@ package org.activiti.upgrade.test;
  */
 
 import static org.junit.Assert.assertNull;
-import junit.framework.Assert;
 
-import org.activiti.engine.history.HistoricTaskInstance;
-import org.activiti.engine.repository.Deployment;
-import org.activiti.engine.task.Task;
-import org.activiti.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
-import org.activiti.upgrade.test.helper.UpgradeTestCase;
+import org.flowable.engine.history.HistoricTaskInstance;
+import org.flowable.engine.repository.Deployment;
+import org.flowable.engine.task.Task;
+import org.flowable.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
+import org.flowable.upgrade.test.helper.UpgradeTestCase;
 import org.junit.Test;
+
+import junit.framework.Assert;
 
 /**
  * This is an upgrade test added for the 5.15 release. In that release, we've

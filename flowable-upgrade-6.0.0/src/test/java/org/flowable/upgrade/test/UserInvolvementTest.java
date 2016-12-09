@@ -10,19 +10,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.upgrade.test;
+package org.flowable.upgrade.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.activiti.engine.repository.Deployment;
-import org.activiti.engine.runtime.ProcessInstance;
-import org.activiti.engine.task.IdentityLink;
-import org.activiti.engine.task.IdentityLinkType;
-import org.activiti.engine.task.Task;
-import org.activiti.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
-import org.activiti.upgrade.test.helper.UpgradeTestCase;
+import org.flowable.engine.repository.Deployment;
+import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.engine.task.IdentityLink;
+import org.flowable.engine.task.IdentityLinkType;
+import org.flowable.engine.task.Task;
+import org.flowable.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
+import org.flowable.upgrade.test.helper.UpgradeTestCase;
 import org.junit.Test;
 
 

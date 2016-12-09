@@ -1,13 +1,13 @@
-package org.activiti.upgrade.test;
+package org.flowable.upgrade.test;
 
 import java.util.List;
 
-import org.activiti.engine.impl.EventSubscriptionQueryImpl;
-import org.activiti.engine.impl.interceptor.Command;
-import org.activiti.engine.impl.interceptor.CommandContext;
-import org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity;
-import org.activiti.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
-import org.activiti.upgrade.test.helper.UpgradeTestCase;
+import org.flowable.engine.impl.EventSubscriptionQueryImpl;
+import org.flowable.engine.impl.interceptor.Command;
+import org.flowable.engine.impl.interceptor.CommandContext;
+import org.flowable.engine.impl.persistence.entity.EventSubscriptionEntity;
+import org.flowable.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
+import org.flowable.upgrade.test.helper.UpgradeTestCase;
 import org.junit.Assert;
 import org.junit.Test;
 

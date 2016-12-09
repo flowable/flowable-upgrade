@@ -10,10 +10,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.upgrade.test.helper;
+package org.flowable.upgrade.test.helper;
 
-import org.activiti.upgrade.helper.ActivitiVersion;
-import org.activiti.upgrade.helper.UpgradeUtil;
+import org.flowable.upgrade.helper.ActivitiVersion;
+import org.flowable.upgrade.helper.UpgradeUtil;
 import org.junit.Assume;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
