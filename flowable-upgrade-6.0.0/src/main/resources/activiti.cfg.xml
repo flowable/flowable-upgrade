@@ -12,7 +12,7 @@
         
         <property name="databaseSchemaUpdate" value="true" />
         
-        <property name="activiti5CompatibilityEnabled" value="true" />
+        <property name="flowable5CompatibilityEnabled" value="true" />
         
         <property name="asyncExecutorActivate" value="false" />
         <property name="asyncExecutorDefaultTimerJobAcquireWaitTime" value="1000" />
