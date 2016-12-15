@@ -369,7 +369,7 @@ public class Activiti5ToV6JobMigrationTest extends UpgradeTestCase {
 		// Verify process definitions
 		ProcessDefinition oldProcessDefinition = repositoryService.createProcessDefinitionQuery()
 				.processDefinitionKey("activiti5-plenty-of-jobs").singleResult();
-		Assert.assertEquals(Flowable5CompatibilityHandler.FLOWABLE_5_ENGINE_TAG, oldProcessDefinition.getEngineVersion());
+		Assert.assertEquals(Flowable5CompatibilityHandler.V5_ENGINE_TAG, oldProcessDefinition.getEngineVersion());
 		
 		repositoryService.createDeployment()
 			.addClasspathResource("org/activiti/upgrade/test/Activiti5To6Test.processWithPlentyJobs.bpmn20.xml").deploy();
