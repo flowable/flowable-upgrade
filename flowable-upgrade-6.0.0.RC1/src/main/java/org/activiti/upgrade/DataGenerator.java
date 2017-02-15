@@ -1,12 +1,12 @@
-package org.flowable.upgrade;
+package org.activiti.upgrade;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.activiti.upgrade.helper.UpgradeUtil;
 import org.flowable.engine.ProcessEngine;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.runtime.ProcessInstance;
-import org.flowable.upgrade.helper.UpgradeUtil;
 
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
