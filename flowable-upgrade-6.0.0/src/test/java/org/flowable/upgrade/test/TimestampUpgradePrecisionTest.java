@@ -19,10 +19,10 @@ import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.history.HistoricTaskInstance;
 import org.flowable.engine.impl.EventSubscriptionQueryImpl;
 import org.flowable.engine.impl.ProcessEngineImpl;
-import org.flowable.engine.impl.persistence.entity.EventSubscriptionEntity;
 import org.flowable.engine.impl.persistence.entity.JobEntity;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.repository.ProcessDefinition;
+import org.flowable.engine.runtime.EventSubscription;
 import org.flowable.engine.runtime.Job;
 import org.flowable.engine.task.Task;
 import org.flowable.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
@@ -93,9 +93,9 @@ public class TimestampUpgradePrecisionTest extends UpgradeTestCase {
 	  }
 	  
 	  // Assert event subscription date
-	  List<EventSubscriptionEntity> eventSubscriptionEntities = new EventSubscriptionQueryImpl(((ProcessEngineImpl)processEngine).getProcessEngineConfiguration().getCommandExecutor()).list();
+	  List<EventSubscription> eventSubscriptionEntities = new EventSubscriptionQueryImpl(((ProcessEngineImpl)processEngine).getProcessEngineConfiguration().getCommandExecutor()).list();
 	  Assert.assertEquals(3, eventSubscriptionEntities.size());
-	  for (EventSubscriptionEntity eventSubscriptionEntity : eventSubscriptionEntities) {
+	  for (EventSubscription eventSubscriptionEntity : eventSubscriptionEntities) {
 	  	Assert.assertNotNull(eventSubscriptionEntity);
 	  }
 	  
