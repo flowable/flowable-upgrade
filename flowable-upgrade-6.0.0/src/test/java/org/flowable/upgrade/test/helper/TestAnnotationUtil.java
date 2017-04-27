@@ -12,8 +12,8 @@
  */
 package org.flowable.upgrade.test.helper;
 
-import org.flowable.upgrade.helper.ActivitiVersion;
-import org.flowable.upgrade.helper.UpgradeUtil;
+import org.activiti.upgrade.helper.ActivitiVersion;
+import org.activiti.upgrade.helper.UpgradeUtil;
 import org.junit.Assume;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

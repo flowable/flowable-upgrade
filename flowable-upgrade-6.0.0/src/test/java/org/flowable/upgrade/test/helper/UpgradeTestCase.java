@@ -1,5 +1,6 @@
 package org.flowable.upgrade.test.helper;
 
+import org.activiti.upgrade.helper.UpgradeUtil;
 import org.flowable.engine.FormService;
 import org.flowable.engine.HistoryService;
 import org.flowable.engine.IdentityService;
@@ -9,7 +10,6 @@ import org.flowable.engine.RepositoryService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl;
-import org.flowable.upgrade.helper.UpgradeUtil;
 import org.junit.Before;
 import org.junit.Ignore;
 

@@ -27,9 +27,9 @@
 		<module>flowable-upgrade-5.20.0</module>
 		<module>flowable-upgrade-5.21.0</module>
 		<module>flowable-upgrade-5.22.0</module>
-		<module>flowable-upgrade-6.0.0.Beta4</module>
 		<module>flowable-upgrade-6.0.0.RC1</module>
 		<module>flowable-upgrade-6.0.0</module>
+		<module>flowable-upgrade-6.0.1</module>
 	</modules>
 
 	<dependencies>

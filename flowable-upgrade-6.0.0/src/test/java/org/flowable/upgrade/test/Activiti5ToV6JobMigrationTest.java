@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
+import org.activiti.upgrade.helper.EntitySnapshotUtil;
+import org.activiti.upgrade.helper.EntitySnapshotUtil.EntitySnapShot;
 import org.flowable.bpmn.model.FlowElement;
 import org.flowable.engine.impl.asyncexecutor.AsyncExecutor;
 import org.flowable.engine.impl.persistence.entity.ExecutionEntityImpl;
@@ -28,8 +30,6 @@ import org.flowable.engine.runtime.Execution;
 import org.flowable.engine.runtime.Job;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.engine.task.Task;
-import org.flowable.upgrade.helper.EntitySnapshotUtil;
-import org.flowable.upgrade.helper.EntitySnapshotUtil.EntitySnapShot;
 import org.flowable.upgrade.test.helper.RunOnlyWithTestDataFromVersion;
 import org.flowable.upgrade.test.helper.UpgradeTestCase;
 import org.junit.After;
