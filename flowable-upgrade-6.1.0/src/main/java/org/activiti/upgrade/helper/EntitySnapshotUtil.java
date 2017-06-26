@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.flowable.engine.ProcessEngine;
-import org.flowable.engine.common.impl.Page;
 import org.flowable.engine.common.impl.persistence.entity.Entity;
 import org.flowable.engine.impl.EventSubscriptionQueryImpl;
 import org.flowable.engine.impl.db.EntityDependencyOrder;
@@ -125,7 +124,7 @@ public class EntitySnapshotUtil {
 		list.add(processEngine.getManagementService().executeCommand(new Command<List<? extends Object>>() {
 			public List<? extends Object> execute(CommandContext commandContext) {
 				EventSubscriptionQueryImpl query = new EventSubscriptionQueryImpl(commandContext);
-				return commandContext.getEventSubscriptionEntityManager().findEventSubscriptionsByQueryCriteria(query, new Page(0, Integer.MAX_VALUE));
+				return commandContext.getEventSubscriptionEntityManager().findEventSubscriptionsByQueryCriteria(query);
 			}
 		}));
 		
