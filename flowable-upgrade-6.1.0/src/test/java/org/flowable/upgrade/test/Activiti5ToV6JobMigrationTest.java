@@ -21,12 +21,12 @@ import java.util.concurrent.TimeUnit;
 
 import org.activiti.upgrade.helper.EntitySnapshotUtil;
 import org.activiti.upgrade.helper.EntitySnapshotUtil.EntitySnapShot;
+import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.bpmn.model.FlowElement;
 import org.flowable.engine.impl.asyncexecutor.AsyncExecutor;
-import org.flowable.engine.impl.persistence.entity.ExecutionEntityImpl;
+import org.flowable.engine.impl.persistence.entity.ExecutionEntity;
 import org.flowable.engine.impl.util.Flowable5Util;
 import org.flowable.engine.repository.ProcessDefinition;
-import org.flowable.engine.runtime.Execution;
 import org.flowable.engine.runtime.Job;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.engine.task.Task;
@@ -471,9 +471,10 @@ public class Activiti5ToV6JobMigrationTest extends UpgradeTestCase {
 		boolean found = false;
 		for (Job job : jobs) {
 			if (job.getExecutionId() != null) {
-				Execution execution = runtimeService.createExecutionQuery().executionId(job.getExecutionId()).singleResult();
-				FlowElement flowElement = ((ExecutionEntityImpl) execution).getCurrentFlowElement();
-				if(serviceTaskName.equals(flowElement.getName())) {
+				ExecutionEntity execution = (ExecutionEntity) runtimeService.createExecutionQuery().executionId(job.getExecutionId()).singleResult();
+				BpmnModel bpmnModel = repositoryService.getBpmnModel(execution.getProcessDefinitionId());
+				FlowElement flowElement = bpmnModel.getFlowElement(execution.getActivityId());
+				if (serviceTaskName.equals(flowElement.getName())) {
 					found = true;
 				}
 			}
@@ -485,8 +486,9 @@ public class Activiti5ToV6JobMigrationTest extends UpgradeTestCase {
 		List<Job> jobs = managementService.createJobQuery().processInstanceId(processInstance.getId()).list();
 		for (Job job : jobs) {
 			if (job.getExecutionId() != null) {
-				Execution execution = runtimeService.createExecutionQuery().executionId(job.getExecutionId()).singleResult();
-				FlowElement flowElement = ((ExecutionEntityImpl) execution).getCurrentFlowElement();
+				ExecutionEntity execution = (ExecutionEntity) runtimeService.createExecutionQuery().executionId(job.getExecutionId()).singleResult();
+				BpmnModel bpmnModel = repositoryService.getBpmnModel(execution.getProcessDefinitionId());
+				FlowElement flowElement = bpmnModel.getFlowElement(execution.getActivityId());
 				Assert.assertFalse(serviceTaskName.equals(flowElement.getName()));
 			}
 		}
