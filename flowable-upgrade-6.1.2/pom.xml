@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Flowable Upgrade 6.1.1</name>
-	<artifactId>flowable-upgrade-6.1.1</artifactId>
+	<name>Flowable Upgrade 6.1.2</name>
+	<artifactId>flowable-upgrade-6.1.2</artifactId>
 	<packaging>jar</packaging>
 
     <parent>
@@ -18,12 +18,12 @@
 		<dependency>
 			<groupId>org.flowable</groupId>
 			<artifactId>flowable-engine</artifactId>
-			<version>6.1.1</version>
+			<version>6.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flowable</groupId>
 			<artifactId>flowable5-compatibility</artifactId>
-			<version>6.1.1</version>
+			<version>6.1.2</version>
 		</dependency>
 	</dependencies>
 	
