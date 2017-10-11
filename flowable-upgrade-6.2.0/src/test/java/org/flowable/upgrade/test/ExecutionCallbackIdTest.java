@@ -21,6 +21,7 @@ import org.flowable.cmmn.engine.PlanItemInstanceCallbackType;
 import org.flowable.cmmn.engine.repository.CmmnDeployment;
 import org.flowable.cmmn.engine.runtime.CaseInstance;
 import org.flowable.cmmn.engine.runtime.PlanItemInstance;
+import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.junit.Test;
@@ -33,7 +34,7 @@ import org.junit.Test;
 public class ExecutionCallbackIdTest extends UpgradeTestCase {
     
     @Test
-    public void testExecutionCallbackCanBeSet() {
+    public void testCallbackIdSet() {
         Deployment deployment = repositoryService.createDeployment().addClasspathResource("one-user-task.bpmn20.xml").deploy();
         CmmnDeployment cmmnDeployment = cmmnRepositoryService.createDeployment().addClasspathResource("ExecutionCallbackIdTest.cmmn").deploy();
         
@@ -53,6 +54,13 @@ public class ExecutionCallbackIdTest extends UpgradeTestCase {
         assertNotNull(processInstance);
         assertEquals(planItemInstances.get(0).getId(), processInstance.getCallbackId());
         assertEquals(PlanItemInstanceCallbackType.CHILD_PROCESS, processInstance.getCallbackType());
+        
+        HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery()
+                .processInstanceId(processInstance.getId())
+                .singleResult();
+        assertNotNull(historicProcessInstance);
+        assertEquals(processInstance.getCallbackId(), historicProcessInstance.getCallbackId());
+        assertEquals(processInstance.getCallbackType(), historicProcessInstance.getCallbackType());
         
         repositoryService.deleteDeployment(deployment.getId(), true);
         cmmnRepositoryService.deleteDeployment(cmmnDeployment.getId(), true);

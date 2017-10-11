@@ -15,43 +15,43 @@ package org.flowable.upgrade;
 /**
  * @author Joram Barrez
  */
-public class EngineVersion implements Comparable<EngineVersion>{
+public class EngineVersion implements Comparable<EngineVersion> {
 
     private int majorVersion;
     private int minorVersion;
-    
+
     public EngineVersion(String version) {
-      String[] splittedVersion = version.replace("-SNAPSHOT", "").split("\\.");
-      this.majorVersion = Integer.valueOf(splittedVersion[0]);
-      this.minorVersion = Integer.valueOf(splittedVersion[1]);
+        String[] splittedVersion = version.replace("-SNAPSHOT", "").split("\\.");
+        this.majorVersion = Integer.valueOf(splittedVersion[0]);
+        this.minorVersion = Integer.valueOf(splittedVersion[1]);
     }
-    
+
     @Override
     public int compareTo(EngineVersion other) {
-      if (getMajorVersion() == other.getMajorVersion() && getMinorVersion() == other.getMinorVersion()) {
-        return 0;
-      } else if ( (getMajorVersion() < other.getMajorVersion()) 
-              || ( (getMajorVersion() == other.getMajorVersion()) && (getMinorVersion() < other.getMinorVersion()) ) ) {
-        return -1;
-      } else {
-        return 1;
-      }
+        if (getMajorVersion() == other.getMajorVersion() && getMinorVersion() == other.getMinorVersion()) {
+            return 0;
+        } else if ((getMajorVersion() < other.getMajorVersion())
+                || ((getMajorVersion() == other.getMajorVersion()) && (getMinorVersion() < other.getMinorVersion()))) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 
     public int getMajorVersion() {
-      return majorVersion;
+        return majorVersion;
     }
 
     public void setMajorVersion(int majorVersion) {
-      this.majorVersion = majorVersion;
+        this.majorVersion = majorVersion;
     }
 
     public int getMinorVersion() {
-      return minorVersion;
+        return minorVersion;
     }
 
     public void setMinorVersion(int minorVersion) {
-      this.minorVersion = minorVersion;
+        this.minorVersion = minorVersion;
     }
-    
+
 }

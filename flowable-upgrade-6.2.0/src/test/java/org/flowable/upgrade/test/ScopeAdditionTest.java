@@ -12,19 +12,23 @@
  */
 package org.flowable.upgrade.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.util.List;
+
 import org.flowable.cmmn.engine.repository.CmmnDeployment;
 import org.flowable.cmmn.engine.runtime.CaseInstance;
 import org.flowable.engine.common.impl.interceptor.Command;
 import org.flowable.engine.common.impl.interceptor.CommandContext;
 import org.flowable.engine.impl.util.CommandContextUtil;
 import org.flowable.task.service.Task;
+import org.flowable.task.service.history.HistoricTaskInstance;
+import org.flowable.variable.service.impl.persistence.entity.HistoricVariableInstanceEntity;
 import org.flowable.variable.service.impl.persistence.entity.VariableInstanceEntity;
 import org.flowable.variable.service.type.VariableScopeType;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-
-import java.util.List;
 
 /**
  * In 6.2.0, scope identitfier/type was added to tasks and variables.
@@ -42,7 +46,15 @@ public class ScopeAdditionTest extends UpgradeTestCase {
         assertNotNull(task.getScopeId());
         assertNotNull(task.getSubScopeId());
         assertNotNull(task.getScopeDefinitionId());
-        assertNotNull(task.getScopeDefinitionId());
+        assertNotNull(task.getScopeType());
+        
+        HistoricTaskInstance historicTaskInstance = cmmnHistoryService.createHistoricTaskInstanceQuery()
+                .taskId(task.getId())
+                .singleResult();
+        assertEquals(task.getScopeId(), historicTaskInstance.getScopeId());
+        assertEquals(task.getSubScopeId(), historicTaskInstance.getSubScopeId());
+        assertEquals(task.getScopeDefinitionId(), historicTaskInstance.getScopeDefinitionId());
+        assertEquals(task.getScopeType(), historicTaskInstance.getScopeType());
         
         cmmnRepositoryService.deleteDeployment(cmmnDeployment.getId(), true);
     }
@@ -66,9 +78,23 @@ public class ScopeAdditionTest extends UpgradeTestCase {
         
         assertEquals(3, variableInstanceEntities.size());
         for (VariableInstanceEntity variableInstanceEntity : variableInstanceEntities) {
-            assertNotNull(variableInstanceEntity.getScopeId());
-            assertNotNull(variableInstanceEntity.getSubScopeId());
-            assertNotNull(variableInstanceEntity.getScopeType());
+            assertNotNull("no scope id", variableInstanceEntity.getScopeId());
+            assertNotNull("no scope type", variableInstanceEntity.getScopeType());
+            assertNull("No sub scope should be set", variableInstanceEntity.getSubScopeId());
+        }
+        
+        List<HistoricVariableInstanceEntity> historicVariableInstances = managementService.executeCommand(new Command<List<HistoricVariableInstanceEntity>>() {
+            @Override
+            public List<HistoricVariableInstanceEntity> execute(CommandContext commandContext) {
+                return CommandContextUtil.getVariableServiceConfiguration().getHistoricVariableInstanceEntityManager()
+                        .findHistoricalVariableInstancesByScopeIdAndScopeType(caseInstance.getId(), VariableScopeType.CMMN);
+            }
+        });
+        assertEquals(3, historicVariableInstances.size());
+        for (HistoricVariableInstanceEntity historicVariableInstanceEntity : historicVariableInstances) {
+            assertNotNull("no scope id", historicVariableInstanceEntity.getScopeId());
+            assertNotNull("no scope type", historicVariableInstanceEntity.getScopeType());
+            assertNull("No sub scope should be set", historicVariableInstanceEntity.getSubScopeId());
         }
         
         cmmnRepositoryService.deleteDeployment(cmmnDeployment.getId(), true);
