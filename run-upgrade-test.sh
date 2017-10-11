@@ -5,7 +5,7 @@ if [[ "$3" == "" ]] ; then
    	echo "Missing argument: correct usage <./run-upgrade-test.sh oldVersion newVersion database>"
    	
 else
-
+	mvn -T 1C clean install -DskipTests
 	OLD_VERSION_MODULE="flowable-upgrade-$1"
     echo "Old version module: $OLD_VERSION_MODULE"
 	NEW_VERSION_MODULE="flowable-upgrade-$2"

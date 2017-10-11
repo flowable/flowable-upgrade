@@ -65,7 +65,7 @@ public class UpgradeUtil {
           try {
             connection = new JdbcConnection(dataSource.getConnection());
             database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);
-            Liquibase liquibase = new Liquibase(null, new ClassLoaderResourceAccessor(), database);
+            Liquibase liquibase = new Liquibase((String) null, new ClassLoaderResourceAccessor(), database);
             LOG.info("Dropping upgrade database...");
             liquibase.dropAll();
           } catch (Exception exception) {

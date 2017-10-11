@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti;
+package delegate;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.JavaDelegate;
@@ -18,27 +18,22 @@ import org.activiti.engine.delegate.JavaDelegate;
 /**
  * @author Joram Barrez
  */
-public class RandomSleepJavaDelegate implements JavaDelegate {
+public class PlentyJobsTestDelegate implements JavaDelegate {
 
-	@Override
-	public void execute(DelegateExecution execution) throws Exception {
-		// Just something randomish that is deterministic
-		// (i know, that's a contradiction)
-		String name = execution.getCurrentActivityName();
-		if (name != null && name.length() > 0) {
-			char firstChar = name.charAt(0);
-			try {
-				Thread.sleep(firstChar * 10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		} else {
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
+    @Override
+    public void execute(DelegateExecution execution) throws Exception {
+        // Just something randomish that is deterministic (i know, that's a contradiction)
+        String name = execution.getCurrentActivityName();
+        if (name != null && name.length() > 0) {
+            char firstChar = name.charAt(0);
+            try {
+                Thread.sleep(firstChar * 10);
+            } catch (InterruptedException e) { }
+        } else {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) { }
+        }
+    }
+    
 }
