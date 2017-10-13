@@ -14,7 +14,7 @@ package org.flowable.upgrade.test;
 
 import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.runtime.ProcessInstance;
-import org.flowable.task.service.Task;
+import org.flowable.task.api.Task;
 import org.flowable.upgrade.RunOnlyWithTestDataFromVersion;
 import org.junit.Assert;
 import org.junit.Test;

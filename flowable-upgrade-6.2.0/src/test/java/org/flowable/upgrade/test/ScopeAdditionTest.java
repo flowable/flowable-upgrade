@@ -23,11 +23,11 @@ import org.flowable.cmmn.engine.runtime.CaseInstance;
 import org.flowable.engine.common.impl.interceptor.Command;
 import org.flowable.engine.common.impl.interceptor.CommandContext;
 import org.flowable.engine.impl.util.CommandContextUtil;
-import org.flowable.task.service.Task;
-import org.flowable.task.service.history.HistoricTaskInstance;
+import org.flowable.task.api.Task;
+import org.flowable.task.api.history.HistoricTaskInstance;
+import org.flowable.variable.api.type.VariableScopeType;
 import org.flowable.variable.service.impl.persistence.entity.HistoricVariableInstanceEntity;
 import org.flowable.variable.service.impl.persistence.entity.VariableInstanceEntity;
-import org.flowable.variable.service.type.VariableScopeType;
 import org.junit.Test;
 
 /**

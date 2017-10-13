@@ -39,7 +39,7 @@ import org.flowable.engine.runtime.Execution;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.identitylink.service.impl.persistence.entity.HistoricIdentityLinkEntity;
 import org.flowable.identitylink.service.impl.persistence.entity.IdentityLinkEntity;
-import org.flowable.task.service.Task;
+import org.flowable.task.api.Task;
 import org.flowable.variable.service.impl.persistence.entity.VariableInstanceEntity;
 
 public class EntitySnapShotUtil {

@@ -15,7 +15,7 @@ package org.flowable.upgrade.test;
 import java.util.List;
 
 import org.flowable.engine.runtime.ProcessInstance;
-import org.flowable.job.service.Job;
+import org.flowable.job.api.Job;
 import org.flowable.upgrade.RunOnlyWithTestDataFromVersion;
 import org.junit.Assert;
 import org.junit.Test;

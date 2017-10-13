@@ -20,7 +20,7 @@ import org.flowable.engine.ManagementService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.repository.Deployment;
-import org.flowable.task.service.Task;
+import org.flowable.task.api.Task;
 import org.flowable.upgrade.RunOnlyWithTestDataFromVersion;
 import org.junit.Test;
 
