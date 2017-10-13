@@ -17,10 +17,10 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.flowable.cmmn.engine.PlanItemInstanceCallbackType;
-import org.flowable.cmmn.engine.repository.CmmnDeployment;
-import org.flowable.cmmn.engine.runtime.CaseInstance;
-import org.flowable.cmmn.engine.runtime.PlanItemInstance;
+import org.flowable.cmmn.api.PlanItemInstanceCallbackType;
+import org.flowable.cmmn.api.repository.CmmnDeployment;
+import org.flowable.cmmn.api.runtime.CaseInstance;
+import org.flowable.cmmn.api.runtime.PlanItemInstance;
 import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;

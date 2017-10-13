@@ -18,8 +18,8 @@ import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
-import org.flowable.cmmn.engine.repository.CmmnDeployment;
-import org.flowable.cmmn.engine.runtime.CaseInstance;
+import org.flowable.cmmn.api.repository.CmmnDeployment;
+import org.flowable.cmmn.api.runtime.CaseInstance;
 import org.flowable.engine.common.impl.interceptor.Command;
 import org.flowable.engine.common.impl.interceptor.CommandContext;
 import org.flowable.engine.impl.util.CommandContextUtil;
