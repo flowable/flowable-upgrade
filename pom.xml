@@ -178,15 +178,27 @@
                                 </goals>
                                 <configuration>
                                     <tasks>
-                                        <echo message="updating cfg to db ${database}" />
+                                        <echo message="updating activiti cfg to db ${database}" />
                                         <copy file="src/main/resources/activiti.cfg.xml"
                                               todir="target/classes"
                                               overwrite="true"
                                               failonerror="false">
                                             <filterset filtersfile="${user.home}/.flowable/jdbc/build.${database}.properties" />
                                         </copy>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>database-test-set-jdbc-info</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo message="updating flowable cfg to db ${database}" />
                                         <copy file="src/main/resources/flowable.cfg.xml"
-                                              todir="target/test-classes"
+                                              todir="target/classes"
                                               overwrite="true"
                                               failonerror="false">
                                             <filterset filtersfile="${user.home}/.flowable/jdbc/build.${database}.properties" />
