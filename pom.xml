@@ -38,6 +38,7 @@
         <module>flowable-upgrade-6.1.2</module>
         <module>flowable-upgrade-6.2.0</module>
         <module>flowable-upgrade-6.2.1</module>
+        <module>flowable-upgrade-6.3.0</module>
     </modules>
 
     <dependencies>
@@ -112,8 +113,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
                     <optimize>true</optimize>
