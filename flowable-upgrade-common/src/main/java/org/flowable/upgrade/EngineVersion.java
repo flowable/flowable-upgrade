@@ -19,16 +19,22 @@ public class EngineVersion implements Comparable<EngineVersion> {
 
     private int majorVersion;
     private int minorVersion;
+    private int microVersion = -1;
 
     public EngineVersion(String version) {
         String[] splittedVersion = version.replace("-SNAPSHOT", "").split("\\.");
         this.majorVersion = Integer.valueOf(splittedVersion[0]);
         this.minorVersion = Integer.valueOf(splittedVersion[1]);
+        if (splittedVersion.length > 2) {
+            microVersion = Integer.valueOf(splittedVersion[2]);
+        }
     }
 
     @Override
     public int compareTo(EngineVersion other) {
-        if (getMajorVersion() == other.getMajorVersion() && getMinorVersion() == other.getMinorVersion()) {
+        if (getMajorVersion() == other.getMajorVersion() 
+                && getMinorVersion() == other.getMinorVersion()
+                && getMicroVersion() == other.getMicroVersion()) {
             return 0;
         } else if ((getMajorVersion() < other.getMajorVersion())
                 || ((getMajorVersion() == other.getMajorVersion()) && (getMinorVersion() < other.getMinorVersion()))) {
@@ -54,4 +60,12 @@ public class EngineVersion implements Comparable<EngineVersion> {
         this.minorVersion = minorVersion;
     }
 
+    public int getMicroVersion() {
+        return microVersion;
+    }
+
+    public void setMicroVersion(int microVersion) {
+        this.microVersion = microVersion;
+    }
+    
 }

@@ -64,7 +64,7 @@
             <artifactId>postgresql</artifactId>
             <version>9.4-1201-jdbc4</version>
         </dependency>
-       <dependency>
+    <!--    <dependency>
             <groupId>com.oracle.jdbc</groupId>
             <artifactId>ojdbc7</artifactId>
             <version>12.1.0.1</version>
@@ -78,7 +78,7 @@
             <groupId>com.ibm.db2.jcc</groupId>
             <artifactId>db2jcc4</artifactId>
             <version>10.1</version>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>

@@ -16,19 +16,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.flowable.engine.ProcessEngine;
+import org.flowable.engine.RepositoryService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.identitylink.service.IdentityLinkType;
+import org.flowable.task.api.Task;
 import org.flowable.upgrade.helper.UpgradeUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Joram Barrez
  */
 public class DataGenerator {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataGenerator.class);
 
     public static void main(String[] args) {
         ProcessEngine processEngine = UpgradeUtil.getProcessEngine();
         createCommonData(processEngine);
+        create621Data(processEngine);
     }
 
     private static void createCommonData(ProcessEngine processEngine) {
@@ -53,6 +61,27 @@ public class DataGenerator {
         variables.put("instrument", "trumpet");
         variables.put("player", "gonzo");
         runtimeService.startProcessInstanceByKey("taskWithExecutionVariablesProcess", variables);
+    }
+    
+    private static void create621Data(ProcessEngine processEngine) {
+        LOGGER.info("Generating 6.2.1 specific data");
+        
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        TaskService taskService = processEngine.getTaskService();
+        
+        repositoryService.createDeployment()
+            .name("entityCountingTest")
+            .addClasspathResource("org/flowable/upgrade/test/EntityCountingTest.testCounts.bpmn20.xml")
+            .deploy();
+        
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("testEntityCounts");
+        Task task = taskService.createTaskQuery().processInstanceId(processInstance.getId()).singleResult();
+        
+        taskService.addUserIdentityLink(task.getId(), "someUser", IdentityLinkType.PARTICIPANT); 
+        
+        String executionId = task.getExecutionId();
+        runtimeService.setVariableLocal(executionId, "someVariable", "someValue");
     }
 
 }
