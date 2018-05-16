@@ -30,7 +30,6 @@
         <module>flowable-upgrade-5.20.0</module>
         <module>flowable-upgrade-5.21.0</module>
         <module>flowable-upgrade-5.22.0</module>
-        <module>flowable-upgrade-6.0.0.RC1</module>
         <module>flowable-upgrade-6.0.0</module>
         <module>flowable-upgrade-6.0.1</module>
         <module>flowable-upgrade-6.1.0</module>
@@ -39,6 +38,7 @@
         <module>flowable-upgrade-6.2.0</module>
         <module>flowable-upgrade-6.2.1</module>
         <module>flowable-upgrade-6.3.0</module>
+        <module>flowable-upgrade-6.3.1</module>
     </modules>
 
     <dependencies>
