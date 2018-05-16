@@ -27,7 +27,9 @@ import org.flowable.engine.runtime.ProcessInstance;
 import org.junit.Test;
 
 /**
- * In 6.2.0, callback identifier and callback type were added to the executions/process instances/historic process instances
+ * In 6.2.0, callback identifier and callback type were added to the executions/process instances/historic process instances.
+ * 
+ * This test works against any previous version.
  * 
  * @author Joram Barrez
  */

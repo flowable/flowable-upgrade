@@ -33,6 +33,8 @@ import org.junit.Test;
 /**
  * In 6.2.0, scope identitfier/type was added to tasks and variables.
  * 
+ * This test works against any previous version.
+ * 
  * @author Joram Barrrez
  */
 public class ScopeAdditionTest extends UpgradeTestCase {
