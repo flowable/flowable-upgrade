@@ -40,6 +40,7 @@
         <module>flowable-upgrade-6.3.0</module>
         <module>flowable-upgrade-6.3.1</module>
         <module>flowable-upgrade-6.4.0</module>
+        <module>flowable-upgrade-6.4.1</module>
     </modules>
 
     <dependencies>

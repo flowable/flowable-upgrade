@@ -32,6 +32,38 @@ public class DataGenerator {
     }
 
     private static void createCommonData(ProcessEngine processEngine) {
+        generateSimplestTaskData(processEngine);
+        generateTaskWithExecutionVariableskData(processEngine);
+        generateCallActivityData(processEngine);
+    }
+
+    private static void generateCallActivityData(ProcessEngine processEngine) {
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+
+        processEngine.getRepositoryService().createDeployment()
+            .name("callActivityProcess")
+            .addClasspathResource("org/flowable/upgrade/test/CallSimpleSubProcess.bpmn20.xml")
+            .addClasspathResource("org/flowable/upgrade/test/CalledProcess.bpmn20.xml")
+            .deploy();
+
+        runtimeService.startProcessInstanceByKey("callSimpleSubProcess", "callSimpleSubProcess");
+    }
+
+    private static void generateTaskWithExecutionVariableskData(ProcessEngine processEngine) {
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+
+        processEngine.getRepositoryService().createDeployment()
+            .name("simpleTaskProcess")
+            .addClasspathResource("org/flowable/upgrade/test/UserTaskBeforeTest.testTaskWithExecutionVariables.bpmn20.xml")
+            .deploy();
+
+        Map<String, Object> variables = new HashMap<String, Object>();
+        variables.put("instrument", "trumpet");
+        variables.put("player", "gonzo");
+        runtimeService.startProcessInstanceByKey("taskWithExecutionVariablesProcess", variables);
+    }
+
+    private static void generateSimplestTaskData(ProcessEngine processEngine) {
         RuntimeService runtimeService = processEngine.getRuntimeService();
         TaskService taskService = processEngine.getTaskService();
 
@@ -40,19 +72,12 @@ public class DataGenerator {
             .addClasspathResource("org/flowable/upgrade/test/UserTaskBeforeTest.testSimplestTask.bpmn20.xml")
             .deploy();
 
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("simpleTaskProcess");
+        runtimeService.startProcessInstanceByKey("simpleTaskProcess", "changeAssignee");
+        runtimeService.startProcessInstanceByKey("simpleTaskProcess", "changeOwner");
+
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("simpleTaskProcess", "completeTask");
         String taskId = taskService.createTaskQuery().processInstanceId(processInstance.getId()).singleResult().getId();
         taskService.complete(taskId);
-
-        processEngine.getRepositoryService().createDeployment()
-            .name("simpleTaskProcess")
-            .addClasspathResource("org/flowable/upgrade/test/UserTaskBeforeTest.testTaskWithExecutionVariables.bpmn20.xml") 
-            .deploy();
-
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("instrument", "trumpet");
-        variables.put("player", "gonzo");
-        runtimeService.startProcessInstanceByKey("taskWithExecutionVariablesProcess", variables);
     }
 
 }
