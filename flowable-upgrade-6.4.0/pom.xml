@@ -40,6 +40,28 @@
 			<artifactId>flowable5-compatibility</artifactId>
 			<version>6.4.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-cxf</artifactId>
+			<version>6.4.0</version>
+		</dependency>
+
+		<!-- This dependency is a test dependency of the flowable-cxf module and is needed for the mock web service -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>3.2.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj.version}</version>
+			<!-- This is onn compile dependency, as it is needed in the DataGenerator to verify that the variables
+			which are expected are actually there -->
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	
 	

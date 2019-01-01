@@ -40,6 +40,18 @@
 			<artifactId>flowable5-compatibility</artifactId>
 			<version>6.4.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-cxf</artifactId>
+			<version>6.4.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- This dependency is a test dependency of the flowable-cxf module and is needed for the mock web service -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>3.2.7</version>
+		</dependency>
 	</dependencies>
 	
 	
