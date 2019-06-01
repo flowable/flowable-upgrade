@@ -188,7 +188,7 @@
                                               todir="target/classes"
                                               overwrite="true"
                                               failonerror="false">
-                                            <filterset filtersfile="${user.home}/.flowable/jdbc/build.${database}.properties" />
+                                            <filterset filtersfile="${user.home}/.flowable/jdbc/build.flowable6.${database}.properties" />
                                         </copy>
                                     </tasks>
                                 </configuration>
@@ -206,7 +206,7 @@
                                               todir="target/classes"
                                               overwrite="true"
                                               failonerror="false">
-                                            <filterset filtersfile="${user.home}/.flowable/jdbc/build.${database}.properties" />
+                                            <filterset filtersfile="${user.home}/.flowable/jdbc/build.flowable6.${database}.properties" />
                                         </copy>
                                     </tasks>
                                 </configuration>
@@ -242,13 +242,13 @@
                                               todir="target/classes"
                                               overwrite="true"
                                               failonerror="false">
-                                            <filterset filtersfile="${user.home}/.flowable/jdbc/build.${databasewithschema}.properties" />
+                                            <filterset filtersfile="${user.home}/.flowable/jdbc/build.flowable6.${databasewithschema}.properties" />
                                         </copy>
                                         <copy file="src/main/resources/schema/flowable.cfg.xml"
                                               todir="target/classes"
                                               overwrite="true"
                                               failonerror="false">
-                                            <filterset filtersfile="${user.home}/.flowable/jdbc/build.${databasewithschema}.properties" />
+                                            <filterset filtersfile="${user.home}/.flowable/jdbc/build.flowable6.${databasewithschema}.properties" />
                                         </copy>
                                     </tasks>
                                 </configuration>
