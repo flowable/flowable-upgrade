@@ -18,6 +18,7 @@
 
     <modules>
         <module>flowable-upgrade-common</module>
+        <module>flowable-upgrade-drop</module>
         <module>flowable-upgrade-5.14</module>
         <module>flowable-upgrade-5.15</module>
         <module>flowable-upgrade-5.15.1</module>

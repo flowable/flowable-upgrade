@@ -52,6 +52,15 @@
 			<artifactId>cxf-rt-transports-http-jetty</artifactId>
 			<version>3.2.7</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj.version}</version>
+			<!-- This is a compile dependency, as it is needed in the DataGenerator to verify that the variables
+			which are expected are actually there -->
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	
 	

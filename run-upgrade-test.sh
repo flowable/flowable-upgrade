@@ -12,10 +12,18 @@ else
     echo "Old version module: $NEW_VERSION_MODULE"
     DATABASE=$3
     echo "Database type: $DATABASE"
+    
+    cd flowable-upgrade-drop 
+	if [[ "$DATABASE" == "oracle" ]] ; then
+		mvn -Ddatabasewithschema=$DATABASE -Duser.timezone=GMT clean test
+	else
+    	mvn -Ddatabase=$DATABASE clean test
+    fi
         
 	echo
     echo "Running old version module: generating data for version $1"
     echo
+    cd ..
     cd $OLD_VERSION_MODULE
     if [[ "$DATABASE" == "oracle" ]] ; then
     	mvn -Ddatabasewithschema=$DATABASE -Duser.timezone=GMT -DoldVersion=$1 -Dmaven.test.skip=true -DgenerateData=true clean test
@@ -41,6 +49,13 @@ else
 		echo
     	echo "Build failure on old version module. Halting."
     	echo
-	fi   
-	 
+	fi
+	
+	cd ..
+	cd flowable-upgrade-drop 
+	if [[ "$DATABASE" == "oracle" ]] ; then
+		mvn -Ddatabasewithschema=$DATABASE -Duser.timezone=GMT clean test
+	else
+    	mvn -Ddatabase=$DATABASE clean test
+    fi
 fi
