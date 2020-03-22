@@ -82,9 +82,9 @@
             <version>9.4-1201-jdbc4</version>
         </dependency>
    		<dependency>
-            <groupId>com.oracle.jdbc</groupId>
-            <artifactId>ojdbc7</artifactId>
-            <version>12.1.0.1</version>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>12.2.0.1</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.jtds</groupId>
