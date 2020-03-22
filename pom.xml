@@ -14,6 +14,11 @@
         <junit.version>4.12</junit.version>
         <assertj.version>3.11.1</assertj.version>
         <liquibase.version>3.5.3</liquibase.version>
+        <jdbc.url>TODO</jdbc.url>
+        <jdbc.driver>TODO</jdbc.driver>
+        <jdbc.username>TODO</jdbc.username>
+        <jdbc.password>TODO</jdbc.password>
+        <jdbc.schema>TODO</jdbc.schema>
     </properties>
 
     <modules>
@@ -120,6 +125,12 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

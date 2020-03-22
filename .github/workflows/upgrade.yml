@@ -1,0 +1,51 @@
+name: Flowable Upgrade Build
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  currentVersion: 6.5.0
+  oldVersions: [6.4.2, 6.4.1, 6.4.0, 6.3.1, 6.3.0]
+
+jobs:
+  test_postgres:
+    name: Postgres ${{ matrix.postgres }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        postgres: [9, 10, 11, 12]
+        oldVersion: ${{ oldVersions }}
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres }}
+        env:
+          POSTGRES_PASSWORD: flowable
+          POSTGRES_USER: flowable
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a health check
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5 --tmpfs /var/lib/postgresql/data:rw
+    env:
+      # use postgres for the host here because we have specified a container for the job.
+      # If we were running the job on the VM this would be localhost
+      # '>-' is a special YAML syntax and means that new lines would be replaced with spaces
+      # and new lines from the end would be removed
+      MAVEN_OPTS: >-
+        -Djdbc.url=jdbc:postgresql://localhost:${{ job.services.postgres.ports[5432] }}/flowable
+        -Djdbc.username=flowable
+        -Djdbc.password=flowable
+        -Djdbc.driver=org.postgresql.Driver
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Install
+        run: mvn -T 1C -B -V --no-transfer-progress install -D skipTests
+      - name: Generate Data for version ${{ matrix.oldVersion }}
+        run: mvn -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
+      - name: Running ${{ currentVersion }} unit tests against ${{ matrix.oldVersion }}
+        run: mvn -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true clean test -f flowable-upgrade-${{ currentVersion }}/pom.xml
