@@ -40,9 +40,17 @@ jobs:
         -B -V --no-transfer-progress
     steps:
       - uses: actions/checkout@v2
+      - name: Checkout Flowable Engine
+        uses: actions/checkout@v2
+        with:
+          repository: flowable/flowable-engine
+          path: flowable-engine
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Install Flowable Engine SNAPSHOT
+        working-directory: flowable-engine/
+        run: ./mvnw -T 1C clean install -Pdistro -DskipTests -B -V --no-transfer-progress
       - name: Install
         run: ./mvnw -T 1C install -D skipTests
       - name: Generate Data for version ${{ matrix.oldVersion }}
@@ -84,9 +92,17 @@ jobs:
         -B -V --no-transfer-progress
     steps:
       - uses: actions/checkout@v2
+      - name: Checkout Flowable Engine
+        uses: actions/checkout@v2
+        with:
+          repository: flowable/flowable-engine
+          path: flowable-engine
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Install Flowable Engine SNAPSHOT
+        working-directory: flowable-engine/
+        run: ./mvnw -T 1C clean install -Pdistro -DskipTests -B -V --no-transfer-progress
       - name: Install
         run: ./mvnw -T 1C install -D skipTests
       - name: Generate Data for version ${{ matrix.oldVersion }}
@@ -129,6 +145,11 @@ jobs:
         -B -V --no-transfer-progress
     steps:
       - uses: actions/checkout@v2
+      - name: Checkout Flowable Engine
+        uses: actions/checkout@v2
+        with:
+          repository: flowable/flowable-engine
+          path: flowable-engine
       - name: Prepare Database
         run: ./.github/actions/scripts/prepare-mssql.sh
         env:
@@ -139,6 +160,9 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Install Flowable Engine SNAPSHOT
+        working-directory: flowable-engine/
+        run: ./mvnw -T 1C clean install -Pdistro -DskipTests -B -V --no-transfer-progress
       - name: Install
         run: ./mvnw -T 1C install -D skipTests
       - name: Generate Data for version ${{ matrix.oldVersion }}
@@ -184,9 +208,17 @@ jobs:
         -B -V --no-transfer-progress
     steps:
       - uses: actions/checkout@v2
+      - name: Checkout Flowable Engine
+        uses: actions/checkout@v2
+        with:
+          repository: flowable/flowable-engine
+          path: flowable-engine
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Install Flowable Engine SNAPSHOT
+        working-directory: flowable-engine/
+        run: ./mvnw -T 1C clean install -Pdistro -DskipTests -B -V --no-transfer-progress
       - name: Install
         run: ./mvnw -T 1C install -D skipTests
       - name: Generate Data for version ${{ matrix.oldVersion }}
