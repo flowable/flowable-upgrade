@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  schedule:
+    # Run every morning at 7 am
+    - cron: 0 7 * * *
 
 env:
   CURRENT_VERSION: 6.6.1
