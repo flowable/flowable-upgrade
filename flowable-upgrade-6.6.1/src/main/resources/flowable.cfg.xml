@@ -19,6 +19,8 @@
         <property name="asyncExecutorDefaultAsyncJobAcquireWaitTime" value="1000" />
         
         <property name="enableProcessDefinitionInfoCache" value="true" />
+        
+        <property name="enableEntityLinks" value="true" />
 
         <property name="configurators">
             <list>
