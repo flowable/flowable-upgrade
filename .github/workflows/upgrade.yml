@@ -250,7 +250,7 @@ jobs:
           ORACLE_USER: flowable
           ORACLE_USER_PASSWORD: flowable
         ports:
-          - 1521/tcp
+          - 1521/1521
         options: >-
           --shm-size=2g
           --health-interval 30s
@@ -262,7 +262,7 @@ jobs:
       # '>-' is a special YAML syntax and means that new lines would be replaced with spaces
       # and new lines from the end would be removed
       MAVEN_CONFIG: >-
-        -Djdbc.url=jdbc:oracle:thin:@localhost:${{ job.services.oracle.ports[1521] }}:XE
+        -Djdbc.url=jdbc:oracle:thin:@localhost:1521:XE
         -Djdbc.username=flowable
         -Djdbc.password=flowable
         -Djdbc.driver=oracle.jdbc.driver.OracleDriver
