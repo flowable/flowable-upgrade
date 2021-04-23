@@ -250,7 +250,7 @@ jobs:
           ORACLE_USER: flowable
           ORACLE_USER_PASSWORD: flowable
         ports:
-          - 1521/1521
+          - 1521:1521
         options: >-
           --shm-size=2g
           --health-interval 30s
