@@ -228,3 +228,63 @@ jobs:
         run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
       - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
         run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} clean test -f flowable-upgrade-$CURRENT_VERSION/pom.xml
+  test_oracle:
+    name: Oracle ${{ matrix.oracle }} Flowable ${{ matrix.oldVersion }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        oracle: [ "11.2.0.2-xe" ]
+        include:
+          - oracle: 11.2.0.2-xe
+            driverVersion: 11.2.0.4
+            driverArtifact: ojdbc6
+        oldVersion: [ 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
+    services:
+      oracle:
+        image: artifacts.flowable.com/docker-local/infra/oracle:${{ matrix.oracle }}
+        credentials:
+          username: ${{ secrets.flowable_docker_user }}
+          password: ${{ secrets.flowable_docker_user_password }}
+        env:
+          ORACLE_USER: flowable
+          ORACLE_USER_PASSWORD: flowable
+        ports:
+          - 1521/tcp
+        options: >-
+          --shm-size=2g
+          --health-interval 30s
+          --health-timeout 40s
+          --health-retries 10
+    env:
+      # use localhost for the host here because we are running on the VM
+      # If we were running the job in a container this would be oracle
+      # '>-' is a special YAML syntax and means that new lines would be replaced with spaces
+      # and new lines from the end would be removed
+      MAVEN_CONFIG: >-
+        -Djdbc.url=jdbc:oracle:thin:@localhost:${{ job.services.oracle.ports[1521] }}:XE
+        -Djdbc.username=flowable
+        -Djdbc.password=flowable
+        -Djdbc.driver=oracle.jdbc.driver.OracleDriver
+        -Doracle.jdbc.version=${{ matrix.driverVersion }}
+        -Doracle.jdbc.artifact=${{ matrix.driverArtifact }}
+        -B -V --no-transfer-progress
+    steps:
+      - uses: actions/checkout@v2
+      - name: Checkout Flowable Engine
+        uses: actions/checkout@v2
+        with:
+          repository: flowable/flowable-engine
+          path: flowable-engine
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Install Flowable Engine SNAPSHOT
+        working-directory: flowable-engine/
+        run: ./mvnw -T 1C clean install -Pdistro -DskipTests -B -V --no-transfer-progress
+      - name: Install
+        run: ./mvnw -T 1C install -D skipTests
+      - name: Generate Data for version ${{ matrix.oldVersion }}
+        run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
+      - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
+        run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} clean test -f flowable-upgrade-$CURRENT_VERSION/pom.xml
