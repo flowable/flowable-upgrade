@@ -234,25 +234,29 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        oracle: [ "11.2.0.2-xe" ]
+        oracle: [ "11-slim", "18" ]
         include:
-          - oracle: 11.2.0.2-xe
+          - oracle: 11-slim
             driverVersion: 11.2.0.4
             driverArtifact: ojdbc6
+            serviceName: XE
+          - oracle: 18
+            driverVersion: 18.3.0.0
+            driverArtifact: ojdbc8
+            serviceName: XEPDB1
         oldVersion: [ 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       oracle:
-        image: artifacts.flowable.com/docker-local/infra/oracle:${{ matrix.oracle }}
-        credentials:
-          username: ${{ secrets.flowable_docker_user }}
-          password: ${{ secrets.flowable_docker_user_password }}
+        image: gvenzl/oracle-xe:${{ matrix.oracle }}
         env:
-          ORACLE_USER: flowable
-          ORACLE_USER_PASSWORD: flowable
+          ORACLE_PASSWORD: flowable
+          APP_USER: flowable
+          APP_USER_PASSWORD: flowable
         ports:
           - 1521:1521
         options: >-
           --shm-size=2g
+          --health-cmd healthcheck.sh
           --health-interval 30s
           --health-timeout 40s
           --health-retries 10
@@ -262,7 +266,7 @@ jobs:
       # '>-' is a special YAML syntax and means that new lines would be replaced with spaces
       # and new lines from the end would be removed
       MAVEN_CONFIG: >-
-        -Djdbc.url=jdbc:oracle:thin:@localhost:1521:XE
+        -Djdbc.url=jdbc:oracle:thin:@localhost:1521:${{ matrix.serviceName }}
         -Djdbc.username=flowable
         -Djdbc.password=flowable
         -Djdbc.driver=oracle.jdbc.driver.OracleDriver
