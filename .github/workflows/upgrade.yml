@@ -266,7 +266,7 @@ jobs:
       # '>-' is a special YAML syntax and means that new lines would be replaced with spaces
       # and new lines from the end would be removed
       MAVEN_CONFIG: >-
-        -Djdbc.url=jdbc:oracle:thin:@localhost:1521:${{ matrix.serviceName }}
+        -Djdbc.url=jdbc:oracle:thin:@localhost:1521/${{ matrix.serviceName }}
         -Djdbc.username=flowable
         -Djdbc.password=flowable
         -Djdbc.driver=oracle.jdbc.driver.OracleDriver
