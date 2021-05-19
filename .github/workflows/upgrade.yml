@@ -272,6 +272,7 @@ jobs:
         -Djdbc.driver=oracle.jdbc.driver.OracleDriver
         -Doracle.jdbc.version=${{ matrix.driverVersion }}
         -Doracle.jdbc.artifact=${{ matrix.driverArtifact }}
+        -Doracle.jdbc.timezoneAsRegion=false
         -B -V --no-transfer-progress
     steps:
       - uses: actions/checkout@v2
