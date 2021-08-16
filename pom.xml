@@ -11,9 +11,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.2</junit.version>
         <assertj.version>3.11.1</assertj.version>
-        <liquibase.version>3.8.0</liquibase.version>
+        <liquibase.version>4.3.5</liquibase.version>
         <oracle.jdbc.version>12.2.0.1</oracle.jdbc.version>
         <oracle.jdbc.artifact>ojdbc8</oracle.jdbc.artifact>
         <jdbc.url>TODO</jdbc.url>
@@ -109,6 +109,12 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>${liquibase.version}</version>
+            <exclusions>
+				<exclusion>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+				</exclusion>
+			</exclusions>
         </dependency>
         <!-- Logging -->
         <dependency>
