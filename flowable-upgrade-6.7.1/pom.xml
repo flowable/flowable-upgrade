@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Flowable Upgrade Drop</name>
-	<artifactId>flowable-upgrade-drop</artifactId>
+	<name>Flowable Upgrade 6.7.0</name>
+	<artifactId>flowable-upgrade-6.7.0</artifactId>
 	<packaging>jar</packaging>
 
     <parent>
@@ -25,7 +25,7 @@
 			<artifactId>flowable-engine</artifactId>
 			<version>6.7.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
+        <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-cmmn-engine</artifactId>
             <version>6.7.1-SNAPSHOT</version>
@@ -39,6 +39,27 @@
 			<groupId>org.flowable</groupId>
 			<artifactId>flowable5-compatibility</artifactId>
 			<version>6.7.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-cxf</artifactId>
+			<version>6.7.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- This dependency is a test dependency of the flowable-cxf module and is needed for the mock web service -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>3.2.7</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj.version}</version>
+			<!-- This is a compile dependency, as it is needed in the DataGenerator to verify that the variables
+			which are expected are actually there -->
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	
