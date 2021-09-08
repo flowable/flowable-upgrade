@@ -159,9 +159,9 @@ jobs:
       - name: Install
         run: ./mvnw -T 1C install -D skipTests
       - name: Generate Data for version ${{ matrix.oldVersion }}
-        run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
+        run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dflowable.v5.compatibility=false -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
       - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
-        run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} clean test -f flowable-upgrade-$CURRENT_VERSION/pom.xml
+        run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dflowable.v5.compatibility=false clean test -f flowable-upgrade-$CURRENT_VERSION/pom.xml
   test_mssql:
     name: SQL Server ${{ matrix.mssql }} Flowable ${{ matrix.oldVersion }}
     runs-on: ubuntu-latest

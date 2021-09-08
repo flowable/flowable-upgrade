@@ -11,8 +11,8 @@
         <property name="jdbcPassword" value="@jdbc.password@" />
         
         <property name="databaseSchemaUpdate" value="true" />
-        
-        <property name="flowable5CompatibilityEnabled" value="true" />
+
+        <property name="flowable5CompatibilityEnabled" value="${flowable.v5.compatibility:true}" />
         
         <property name="asyncExecutorActivate" value="false" />
         <property name="asyncExecutorDefaultTimerJobAcquireWaitTime" value="1000" />
