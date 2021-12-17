@@ -9,7 +9,7 @@ on:
     - cron: 0 7 * * *
 
 env:
-  CURRENT_VERSION: 6.7.1
+  CURRENT_VERSION: 6.7.2
 
 jobs:
   test_postgres:
@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         postgres: [9, 10, 11, 12, 13]
-        oldVersion: [ 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
+        oldVersion: [ 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       postgres:
         image: postgres:${{ matrix.postgres }}
@@ -69,7 +69,7 @@ jobs:
         # Not testing with latest 8 since they have a bug for exists sub query with order by in the outer
         # See https://bugs.mysql.com/bug.php?id=99019
         mysql: [5.7, 8.0.18]
-        oldVersion: [ 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
+        oldVersion: [ 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       mysql:
         image: mysql:${{ matrix.mysql }}
@@ -119,7 +119,7 @@ jobs:
       fail-fast: false
       matrix:
         mariadb: [ 10.6 ]
-        oldVersion: [ 6.7.0, 6.6.0 ]
+        oldVersion: [ 6.7.1, 6.7.0, 6.6.0 ]
     services:
       mariadb:
         image: mariadb:${{ matrix.mariadb }}
@@ -169,7 +169,7 @@ jobs:
       fail-fast: false
       matrix:
         mssql: [2017-latest-ubuntu]
-        oldVersion: [ 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
+        oldVersion: [ 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       mssql:
         image: mcr.microsoft.com/mssql/server:${{ matrix.mssql }}
@@ -229,7 +229,7 @@ jobs:
       fail-fast: false
       matrix:
         db2: ["11.5.0.0a"]
-        oldVersion: [ 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
+        oldVersion: [ 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       db2:
         image: ibmcom/db2:${{ matrix.db2 }}
@@ -294,7 +294,7 @@ jobs:
             driverVersion: 18.3.0.0
             driverArtifact: ojdbc8
             serviceName: XEPDB1
-        oldVersion: [ 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
+        oldVersion: [ 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       oracle:
         image: gvenzl/oracle-xe:${{ matrix.oracle }}
