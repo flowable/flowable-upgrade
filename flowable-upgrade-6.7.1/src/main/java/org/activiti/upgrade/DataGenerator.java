@@ -15,10 +15,13 @@ package org.activiti.upgrade;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.flowable.common.engine.api.scope.ScopeTypes;
 import org.flowable.engine.ProcessEngine;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.eventregistry.api.EventRepositoryService;
+import org.flowable.eventregistry.impl.EventRegistryEngineConfiguration;
 import org.flowable.upgrade.helper.UpgradeUtil;
 
 /**
@@ -29,6 +32,8 @@ public class DataGenerator {
     public static void main(String[] args) {
         ProcessEngine processEngine = UpgradeUtil.getProcessEngine();
         createCommonData(processEngine);
+        createEventRegistryData(
+                (EventRegistryEngineConfiguration) processEngine.getProcessEngineConfiguration().getEngineConfigurations().get(ScopeTypes.EVENT_REGISTRY));
         // System.exit is needed because the cxf Server keeps the thread alive for some reason
         System.exit(0);
     }
@@ -80,6 +85,41 @@ public class DataGenerator {
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("simpleTaskProcess", "completeTask");
         String taskId = taskService.createTaskQuery().processInstanceId(processInstance.getId()).singleResult().getId();
         taskService.complete(taskId);
+    }
+
+    private static void createEventRegistryData(EventRegistryEngineConfiguration engineConfiguration) {
+        EventRepositoryService repositoryService = engineConfiguration.getEventRepositoryService();
+        repositoryService.createInboundChannelModelBuilder()
+                .key("jmsInbound")
+                .jmsChannelAdapter("test-customer")
+                .eventProcessingPipeline()
+                .jsonDeserializer()
+                .fixedEventKey("test")
+                .jsonFieldsMapDirectlyToPayload()
+                .deploy();
+
+        repositoryService.createInboundChannelModelBuilder()
+                .key("rabbitInbound")
+                .rabbitChannelAdapter("test-customer")
+                .eventProcessingPipeline()
+                .jsonDeserializer()
+                .fixedEventKey("test")
+                .jsonFieldsMapDirectlyToPayload()
+                .deploy();
+
+        repositoryService.createOutboundChannelModelBuilder()
+                .key("jmsOutbound")
+                .jmsChannelAdapter("order")
+                .eventProcessingPipeline()
+                .jsonSerializer()
+                .deploy();
+
+        repositoryService.createOutboundChannelModelBuilder()
+                .key("rabbitOutbound")
+                .rabbitChannelAdapter("order")
+                .eventProcessingPipeline()
+                .jsonSerializer()
+                .deploy();
     }
 
 }
