@@ -56,6 +56,7 @@
         <module>flowable-upgrade-6.7.0</module>
         <module>flowable-upgrade-6.7.1</module>
         <module>flowable-upgrade-6.7.2</module>
+        <module>flowable-upgrade-6.7.3</module>
     </modules>
 
     <dependencies>
