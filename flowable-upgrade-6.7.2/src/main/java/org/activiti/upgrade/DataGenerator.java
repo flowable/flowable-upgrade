@@ -29,6 +29,7 @@ public class DataGenerator {
     public static void main(String[] args) {
         ProcessEngine processEngine = UpgradeUtil.getProcessEngine();
         createCommonData(processEngine);
+        createEventSubscriptionData(processEngine);
         // System.exit is needed because the cxf Server keeps the thread alive for some reason
         System.exit(0);
     }
@@ -80,6 +81,14 @@ public class DataGenerator {
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("simpleTaskProcess", "completeTask");
         String taskId = taskService.createTaskQuery().processInstanceId(processInstance.getId()).singleResult().getId();
         taskService.complete(taskId);
+    }
+
+    private static void createEventSubscriptionData(ProcessEngine processEngine) {
+        // Deploying the process definition will create one event subscription
+        processEngine.getRepositoryService().createDeployment()
+                .name("event-locking-process")
+                .addClasspathResource("org/flowable/upgrade/test/event-locking.bpmn20.xml")
+                .deploy();
     }
 
 }
