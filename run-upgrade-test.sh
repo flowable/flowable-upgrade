@@ -9,7 +9,7 @@ else
 	OLD_VERSION_MODULE="flowable-upgrade-$1"
     echo "Old version module: $OLD_VERSION_MODULE"
 	NEW_VERSION_MODULE="flowable-upgrade-$2"
-    echo "Old version module: $NEW_VERSION_MODULE"
+    echo "New version module: $NEW_VERSION_MODULE"
     DATABASE=$3
     echo "Database type: $DATABASE"
     

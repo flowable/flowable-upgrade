@@ -12,6 +12,8 @@
  */
 package org.flowable.upgrade.test;
 
+import org.flowable.app.engine.AppEngine;
+import org.flowable.app.engine.AppEngineConfiguration;
 import org.flowable.cmmn.api.CmmnHistoryService;
 import org.flowable.cmmn.api.CmmnManagementService;
 import org.flowable.cmmn.api.CmmnRepositoryService;
@@ -38,6 +40,9 @@ import org.junit.Ignore;
  */
 @Ignore
 public abstract class UpgradeTestCase {
+    
+    protected AppEngine appEngine;
+    protected AppEngineConfiguration appEngineConfiguration;
 
     protected ProcessEngine processEngine;
     protected ProcessEngineConfigurationImpl processEngineConfiguration;
@@ -60,8 +65,11 @@ public abstract class UpgradeTestCase {
 
     @Before
     public void setup() {
-        this.processEngine = UpgradeUtil.getProcessEngine("flowable.cfg.xml");
-        this.processEngineConfiguration = (ProcessEngineConfigurationImpl) processEngine.getProcessEngineConfiguration();
+        this.appEngine = UpgradeUtil.getAppEngine("flowable.cfg.xml");
+        this.appEngineConfiguration = appEngine.getAppEngineConfiguration();
+        
+        this.processEngineConfiguration = (ProcessEngineConfigurationImpl) appEngineConfiguration.getEngineConfigurations()
+                .get(EngineConfigurationConstants.KEY_PROCESS_ENGINE_CONFIG);
         this.taskService = processEngine.getTaskService();
         this.runtimeService = processEngine.getRuntimeService();
         this.repositoryService = processEngine.getRepositoryService();

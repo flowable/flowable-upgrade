@@ -15,10 +15,12 @@ package org.activiti.upgrade;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.flowable.app.engine.AppEngine;
 import org.flowable.common.engine.api.scope.ScopeTypes;
-import org.flowable.engine.ProcessEngine;
+import org.flowable.common.engine.impl.interceptor.EngineConfigurationConstants;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
+import org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.eventregistry.api.EventRepositoryService;
 import org.flowable.eventregistry.impl.EventRegistryEngineConfiguration;
@@ -28,26 +30,31 @@ import org.flowable.upgrade.helper.UpgradeUtil;
  * @author Joram Barrez
  */
 public class DataGenerator {
-
+    
     public static void main(String[] args) {
-        ProcessEngine processEngine = UpgradeUtil.getProcessEngine();
-        createCommonData(processEngine);
+        AppEngine appEngine = UpgradeUtil.getAppEngine();
+        ProcessEngineConfigurationImpl processEngineConfiguration = createCommonData(appEngine);
         createEventRegistryData(
-                (EventRegistryEngineConfiguration) processEngine.getProcessEngineConfiguration().getEngineConfigurations().get(ScopeTypes.EVENT_REGISTRY));
+                (EventRegistryEngineConfiguration) processEngineConfiguration.getEngineConfigurations().get(ScopeTypes.EVENT_REGISTRY));
         // System.exit is needed because the cxf Server keeps the thread alive for some reason
         System.exit(0);
     }
 
-    private static void createCommonData(ProcessEngine processEngine) {
-        generateSimplestTaskData(processEngine);
-        generateTaskWithExecutionVariableskData(processEngine);
-        generateCallActivityData(processEngine);
+    private static ProcessEngineConfigurationImpl createCommonData(AppEngine appEngine) {
+        ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) appEngine.getAppEngineConfiguration().getEngineConfigurations()
+                .get(EngineConfigurationConstants.KEY_PROCESS_ENGINE_CONFIG);
+        
+        generateSimplestTaskData(processEngineConfiguration);
+        generateTaskWithExecutionVariableskData(processEngineConfiguration);
+        generateCallActivityData(processEngineConfiguration);
+        
+        return processEngineConfiguration;
     }
 
-    private static void generateCallActivityData(ProcessEngine processEngine) {
-        RuntimeService runtimeService = processEngine.getRuntimeService();
+    private static void generateCallActivityData(ProcessEngineConfigurationImpl processEngineConfiguration) {
+        RuntimeService runtimeService = processEngineConfiguration.getRuntimeService();
 
-        processEngine.getRepositoryService().createDeployment()
+        processEngineConfiguration.getRepositoryService().createDeployment()
             .name("callActivityProcess")
             .addClasspathResource("org/flowable/upgrade/test/CallSimpleSubProcess.bpmn20.xml")
             .addClasspathResource("org/flowable/upgrade/test/CalledProcess.bpmn20.xml")
@@ -56,10 +63,10 @@ public class DataGenerator {
         runtimeService.startProcessInstanceByKey("callSimpleSubProcess", "callSimpleSubProcess");
     }
 
-    private static void generateTaskWithExecutionVariableskData(ProcessEngine processEngine) {
-        RuntimeService runtimeService = processEngine.getRuntimeService();
+    private static void generateTaskWithExecutionVariableskData(ProcessEngineConfigurationImpl processEngineConfiguration) {
+        RuntimeService runtimeService = processEngineConfiguration.getRuntimeService();
 
-        processEngine.getRepositoryService().createDeployment()
+        processEngineConfiguration.getRepositoryService().createDeployment()
             .name("simpleTaskProcess")
             .addClasspathResource("org/flowable/upgrade/test/UserTaskBeforeTest.testTaskWithExecutionVariables.bpmn20.xml")
             .deploy();
@@ -70,11 +77,11 @@ public class DataGenerator {
         runtimeService.startProcessInstanceByKey("taskWithExecutionVariablesProcess", variables);
     }
 
-    private static void generateSimplestTaskData(ProcessEngine processEngine) {
-        RuntimeService runtimeService = processEngine.getRuntimeService();
-        TaskService taskService = processEngine.getTaskService();
+    private static void generateSimplestTaskData(ProcessEngineConfigurationImpl processEngineConfiguration) {
+        RuntimeService runtimeService = processEngineConfiguration.getRuntimeService();
+        TaskService taskService = processEngineConfiguration.getTaskService();
 
-        processEngine.getRepositoryService().createDeployment()
+        processEngineConfiguration.getRepositoryService().createDeployment()
             .name("simpleTaskProcess")
             .addClasspathResource("org/flowable/upgrade/test/UserTaskBeforeTest.testSimplestTask.bpmn20.xml")
             .deploy();

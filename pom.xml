@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.13.2</junit.version>
         <assertj.version>3.11.1</assertj.version>
-        <liquibase.version>4.3.5</liquibase.version>
+        <liquibase.version>4.27.0</liquibase.version>
         <oracle.jdbc.version>12.2.0.1</oracle.jdbc.version>
         <oracle.jdbc.artifact>ojdbc8</oracle.jdbc.artifact>
         <jdbc.url>TODO</jdbc.url>
@@ -26,19 +26,6 @@
     <modules>
         <module>flowable-upgrade-common</module>
         <module>flowable-upgrade-drop</module>
-        <module>flowable-upgrade-5.14</module>
-        <module>flowable-upgrade-5.15</module>
-        <module>flowable-upgrade-5.15.1</module>
-        <module>flowable-upgrade-5.16</module>
-        <module>flowable-upgrade-5.16.1</module>
-        <module>flowable-upgrade-5.16.2</module>
-        <module>flowable-upgrade-5.16.3</module>
-        <module>flowable-upgrade-5.17.0</module>
-        <module>flowable-upgrade-5.18.0</module>
-        <module>flowable-upgrade-5.19.0</module>
-        <module>flowable-upgrade-5.20.0</module>
-        <module>flowable-upgrade-5.21.0</module>
-        <module>flowable-upgrade-5.22.0</module>
         <module>flowable-upgrade-6.0.0</module>
         <module>flowable-upgrade-6.0.1</module>
         <module>flowable-upgrade-6.1.0</module>
@@ -56,7 +43,9 @@
         <module>flowable-upgrade-6.7.0</module>
         <module>flowable-upgrade-6.7.1</module>
         <module>flowable-upgrade-6.7.2</module>
-        <module>flowable-upgrade-6.7.3</module>
+        <module>flowable-upgrade-6.8.0</module>
+        <module>flowable-upgrade-7.0.0</module>
+        <module>flowable-upgrade-7.1.0</module>
     </modules>
 
     <dependencies>

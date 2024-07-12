@@ -14,11 +14,9 @@ package org.flowable.upgrade.helper;
 
 import java.util.logging.Logger;
 
-import org.flowable.engine.ProcessEngine;
-import org.flowable.engine.ProcessEngineConfiguration;
-import org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl;
+import org.flowable.app.engine.AppEngine;
+import org.flowable.app.engine.AppEngineConfiguration;
 import org.flowable.upgrade.DbDropUtil;
-import org.flowable.upgrade.EngineVersion;
 
 public class UpgradeUtil {
 
@@ -26,29 +24,28 @@ public class UpgradeUtil {
 
     private static final Logger LOG = Logger.getLogger(UpgradeUtil.class.getName());
 
-    public static ProcessEngine getProcessEngine() {
-        return getProcessEngine("flowable.cfg.xml");
+    public static AppEngine getAppEngine() {
+        return getAppEngine("flowable.cfg.xml");
     }
 
-    public static ProcessEngine getProcessEngine(String configResource) {
-        ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) ProcessEngineConfiguration
-                .createProcessEngineConfigurationFromResource(configResource);
+    public static AppEngine getAppEngine(String configResource) {
+        AppEngineConfiguration appEngineConfiguration = AppEngineConfiguration.createAppEngineConfigurationFromResource(configResource);
 
         // When the 'old version' tests are run, we drop the schema always once for the first test
         if (!DATABASE_DROPPED && isTestRunningAgainstOldVersion()) {
             synchronized (DATABASE_DROPPED) {
                 if (!DATABASE_DROPPED) {
-                    DATABASE_DROPPED = DbDropUtil.dropDatabaseTable(processEngineConfiguration.getJdbcDriver(), 
-                            processEngineConfiguration.getJdbcUrl(), 
-                            processEngineConfiguration.getJdbcUsername(), 
-                            processEngineConfiguration.getJdbcPassword());
+                    DATABASE_DROPPED = DbDropUtil.dropDatabaseTable(appEngineConfiguration.getJdbcDriver(), 
+                            appEngineConfiguration.getJdbcUrl(), 
+                            appEngineConfiguration.getJdbcUsername(), 
+                            appEngineConfiguration.getJdbcPassword());
                     LOG.info("Dropping upgrade database completed");
                 }
             }
         }
 
-        // Building the process engine will also recreate the schema (for that particular version)
-        return processEngineConfiguration.buildProcessEngine();
+        // Building the app engine will also recreate the schema (for that particular version)
+        return appEngineConfiguration.buildAppEngine();
     }
 
     protected static boolean isTestRunningAgainstOldVersion() {

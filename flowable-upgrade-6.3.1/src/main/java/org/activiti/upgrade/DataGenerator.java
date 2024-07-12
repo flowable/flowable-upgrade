@@ -15,9 +15,11 @@ package org.activiti.upgrade;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.flowable.engine.ProcessEngine;
+import org.flowable.app.engine.AppEngine;
+import org.flowable.common.engine.impl.interceptor.EngineConfigurationConstants;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
+import org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.upgrade.helper.UpgradeUtil;
 
@@ -27,15 +29,18 @@ import org.flowable.upgrade.helper.UpgradeUtil;
 public class DataGenerator {
 
     public static void main(String[] args) {
-        ProcessEngine processEngine = UpgradeUtil.getProcessEngine();
-        createCommonData(processEngine);
+        AppEngine appEngine = UpgradeUtil.getAppEngine();
+        createCommonData(appEngine);
     }
 
-    private static void createCommonData(ProcessEngine processEngine) {
-        RuntimeService runtimeService = processEngine.getRuntimeService();
-        TaskService taskService = processEngine.getTaskService();
+    private static void createCommonData(AppEngine appEngine) {
+        ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) appEngine.getAppEngineConfiguration().getEngineConfigurations()
+                .get(EngineConfigurationConstants.KEY_PROCESS_ENGINE_CONFIG);
+        
+        RuntimeService runtimeService = processEngineConfiguration.getRuntimeService();
+        TaskService taskService = processEngineConfiguration.getTaskService();
 
-        processEngine.getRepositoryService().createDeployment()
+        processEngineConfiguration.getRepositoryService().createDeployment()
             .name("simpleTaskProcess")
             .addClasspathResource("org/flowable/upgrade/test/UserTaskBeforeTest.testSimplestTask.bpmn20.xml")
             .deploy();
@@ -44,7 +49,7 @@ public class DataGenerator {
         String taskId = taskService.createTaskQuery().processInstanceId(processInstance.getId()).singleResult().getId();
         taskService.complete(taskId);
 
-        processEngine.getRepositoryService().createDeployment()
+        processEngineConfiguration.getRepositoryService().createDeployment()
             .name("simpleTaskProcess")
             .addClasspathResource("org/flowable/upgrade/test/UserTaskBeforeTest.testTaskWithExecutionVariables.bpmn20.xml") 
             .deploy();
