@@ -42,9 +42,9 @@ jobs:
         -Djdbc.driver=org.postgresql.Driver
         -B -V --no-transfer-progress
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Checkout Flowable Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: flowable/flowable-engine
           path: flowable-engine
@@ -95,9 +95,9 @@ jobs:
         -Djdbc.driver=com.mysql.cj.jdbc.Driver
         -B -V --no-transfer-progress
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Checkout Flowable Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: flowable/flowable-engine
           path: flowable-engine
@@ -146,9 +146,9 @@ jobs:
         -Djdbc.driver=org.mariadb.jdbc.Driver
         -B -V --no-transfer-progress
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Checkout Flowable Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: flowable/flowable-engine
           path: flowable-engine
@@ -200,9 +200,9 @@ jobs:
         -Djdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
         -B -V --no-transfer-progress
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Checkout Flowable Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: flowable/flowable-engine
           path: flowable-engine
@@ -264,9 +264,9 @@ jobs:
         -Djdbc.driver=com.ibm.db2.jcc.DB2Driver
         -B -V --no-transfer-progress
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Checkout Flowable Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: flowable/flowable-engine
           path: flowable-engine
@@ -330,9 +330,9 @@ jobs:
         -Doracle.jdbc.timezoneAsRegion=false
         -B -V --no-transfer-progress
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Checkout Flowable Engine
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: flowable/flowable-engine
           path: flowable-engine
