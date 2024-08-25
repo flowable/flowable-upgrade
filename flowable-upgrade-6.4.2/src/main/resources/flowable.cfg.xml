@@ -17,7 +17,7 @@
                 <bean class="org.flowable.engine.configurator.ProcessEngineConfigurator">
                     <property name="processEngineConfiguration">
                         <bean class="org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration">
-                            <property name="flowable5CompatibilityEnabled" value="${flowable.v5.compatibility:true}" />
+                            <property name="flowable5CompatibilityEnabled" value="true" />
         
                             <property name="asyncExecutorActivate" value="false" />
                             <property name="asyncExecutorDefaultTimerJobAcquireWaitTime" value="1000" />
