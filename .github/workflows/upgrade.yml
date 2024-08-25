@@ -76,7 +76,7 @@ jobs:
           distribution: 'zulu'
           java-version: 17
       - name: Install
-        run: ./mvnw -T 1C install -D skipTests
+        run: ./mvnw -T 1C install -D skipTests -pl flowable-upgrade-${{ matrix.oldVersion }},flowable-upgrade-$CURRENT_VERSION -am
       - name: Generate Data for version ${{ matrix.oldVersion }}
         run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
       - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
@@ -127,7 +127,7 @@ jobs:
           distribution: 'zulu'
           java-version: 17
       - name: Install
-        run: ./mvnw -T 1C install -D skipTests
+        run: ./mvnw -T 1C install -D skipTests -pl flowable-upgrade-${{ matrix.oldVersion }},flowable-upgrade-$CURRENT_VERSION -am
       - name: Generate Data for version ${{ matrix.oldVersion }}
         run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
       - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
@@ -176,7 +176,7 @@ jobs:
           distribution: 'zulu'
           java-version: 17
       - name: Install
-        run: ./mvnw -T 1C install -D skipTests
+        run: ./mvnw -T 1C install -D skipTests -pl flowable-upgrade-${{ matrix.oldVersion }},flowable-upgrade-$CURRENT_VERSION -am
       - name: Generate Data for version ${{ matrix.oldVersion }}
         run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dflowable.v5.compatibility=false -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
       - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
@@ -235,7 +235,7 @@ jobs:
           distribution: 'zulu'
           java-version: 17
       - name: Install
-        run: ./mvnw -T 1C install -D skipTests
+        run: ./mvnw -T 1C install -D skipTests -pl flowable-upgrade-${{ matrix.oldVersion }},flowable-upgrade-$CURRENT_VERSION -am
       - name: Generate Data for version ${{ matrix.oldVersion }}
         run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
       - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
@@ -290,7 +290,7 @@ jobs:
           distribution: 'zulu'
           java-version: 17
       - name: Install
-        run: ./mvnw -T 1C install -D skipTests
+        run: ./mvnw -T 1C install -D skipTests -pl flowable-upgrade-${{ matrix.oldVersion }},flowable-upgrade-$CURRENT_VERSION -am
       - name: Generate Data for version ${{ matrix.oldVersion }}
         run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
       - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
@@ -354,7 +354,7 @@ jobs:
           distribution: 'zulu'
           java-version: 17
       - name: Install
-        run: ./mvnw -T 1C install -D skipTests
+        run: ./mvnw -T 1C install -D skipTests -pl flowable-upgrade-${{ matrix.oldVersion }},flowable-upgrade-$CURRENT_VERSION -am
       - name: Generate Data for version ${{ matrix.oldVersion }}
         run: ./mvnw -DoldVersion=${{ matrix.oldVersion }} -Dmaven.test.skip=true -DgenerateData=true clean test -f flowable-upgrade-${{ matrix.oldVersion }}/pom.xml
       - name: Running $CURRENT_VERSION unit tests against ${{ matrix.oldVersion }}
