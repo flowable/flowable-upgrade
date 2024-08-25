@@ -211,7 +211,7 @@ jobs:
       # '>-' is a special YAML syntax and means that new lines would be replaced with spaces
       # and new lines from the end would be removed
       MAVEN_CONFIG: >-
-        -Djdbc.url=jdbc:sqlserver://localhost:1433;database=flowable
+        -Djdbc.url=jdbc:sqlserver://localhost:1433;database=flowable;encrypt=false
         -Djdbc.username=flowable
         -Djdbc.password=flowable
         -Djdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
