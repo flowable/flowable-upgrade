@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        postgres: [ 11, 12, 13, 14, 15, 16 ]
+        postgres: [ 14, 15, 16, 17 ]
         oldVersion: [ 7.1.0, 7.0.0, 6.8.0, 6.7.2, 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       postgres:
@@ -89,9 +89,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Not testing with latest 8 since they have a bug for exists sub query with order by in the outer
-        # See https://bugs.mysql.com/bug.php?id=99019
-        mysql: [5.7, 8.0.18]
+        mysql: [ 8.0, 8.4 ]
         oldVersion: [ 7.1.0, 7.0.0, 6.8.0, 6.7.2, 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       mysql:
@@ -140,7 +138,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mariadb: [ 10.6 ]
+        mariadb: [ 10.6, 11.4 ]
         oldVersion: [ 7.1.0, 7.0.0, 6.8.0, 6.7.2, 6.7.1, 6.7.0, 6.6.0, 6.5.0 ]
     services:
       mariadb:
@@ -189,7 +187,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mssql: [2019-latest]
+        mssql: [2022-latest]
         oldVersion: [ 7.1.0, 7.0.0, 6.8.0, 6.7.2, 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1 ]
     services:
       mssql:
@@ -248,11 +246,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        db2: ["11.5.0.0a"]
+        db2: ["11.5.9.0"]
         oldVersion: [ 7.1.0, 7.0.0, 6.8.0, 6.7.2, 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       db2:
-        image: ibmcom/db2:${{ matrix.db2 }}
+        image: icr.io/db2_community/db2:${{ matrix.db2 }}
         env:
           DB2INST1_PASSWORD: flowable
           DBNAME: flowable
@@ -264,7 +262,7 @@ jobs:
         # needed because the db2 container does not provide a health check
         options: >-
           --privileged=true
-          --health-cmd="su - db2inst1 -c \"~/sqllib/bin/db2 connect to flowable && ~/sqllib/bin/db2 connect reset\""
+          --health-cmd="su - db2inst1 -c \"~/sqllib/bin/db2gcf -s\""
           --health-interval 30s
           --health-timeout 40s
           --health-retries 10
@@ -303,20 +301,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        oracle: [ "11-slim", "18-slim" ]
+        oracle: [ "18-slim-faststart", "23-slim-faststart" ]
         include:
-          - oracle: 11-slim
-            driverVersion: 11.2.0.4
-            driverArtifact: ojdbc6
-            serviceName: XE
-          - oracle: 18-slim
+          - oracle: 18-slim-faststart
             driverVersion: 18.3.0.0
             driverArtifact: ojdbc8
             serviceName: XEPDB1
+            type: xe
+          - oracle: 23-slim-faststart
+            driverVersion: 23.5.0.24.07
+            driverArtifact: ojdbc11
+            serviceName: FREEPDB1
+            type: free
         oldVersion: [ 7.1.0, 7.0.0, 6.8.0, 6.7.2, 6.7.1, 6.7.0, 6.6.0, 6.5.0, 6.4.2,  6.4.1, 6.4.0, 6.3.1, 6.3.0 ]
     services:
       oracle:
-        image: gvenzl/oracle-xe:${{ matrix.oracle }}
+        image: gvenzl/oracle-${{ matrix.type }}:${{ matrix.oracle }}
         env:
           ORACLE_PASSWORD: flowable
           APP_USER: flowable
