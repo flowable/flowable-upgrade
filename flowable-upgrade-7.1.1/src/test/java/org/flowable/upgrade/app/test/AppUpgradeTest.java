@@ -40,7 +40,7 @@ public class AppUpgradeTest extends UpgradeTestCase {
     		
     	});
     	
-    	assertEquals("7.2.0.0", appSchemaVersion);
+    	assertEquals("7.2.0.1", appSchemaVersion);
         
     }
 }
