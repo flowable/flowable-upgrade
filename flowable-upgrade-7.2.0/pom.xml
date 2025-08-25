@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<name>Flowable Upgrade 7.2.0</name>
-	<artifactId>0</artifactId>
+    <artifactId>flowable-upgrade-7.2.0</artifactId>
 	<packaging>jar</packaging>
 
     <parent>
