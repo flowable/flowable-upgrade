@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Flowable Upgrade 7.1.1</name>
-	<artifactId>flowable-upgrade-7.1.1</artifactId>
+	<name>Flowable Upgrade 7.2.0</name>
+	<artifactId>0</artifactId>
 	<packaging>jar</packaging>
 
     <parent>
@@ -27,57 +27,57 @@
 		<dependency>
 			<groupId>org.flowable</groupId>
 			<artifactId>flowable-engine</artifactId>
-			<version>7.1.1-SNAPSHOT</version>
+			<version>7.2.0</version>
 		</dependency>
 		<dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-engine-configurator</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-cmmn-engine</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-cmmn-engine-configurator</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-app-engine</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-event-registry</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-event-registry-configurator</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-dmn-engine</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-dmn-engine-configurator</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
 		<dependency>
 			<groupId>org.flowable</groupId>
 			<artifactId>flowable5-compatibility</artifactId>
-			<version>7.1.1-SNAPSHOT</version>
+			<version>7.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flowable</groupId>
 			<artifactId>flowable-cxf</artifactId>
-			<version>7.1.1-SNAPSHOT</version>
+			<version>7.2.0</version>
 		</dependency>
 
 		<!-- This dependency is a test dependency of the flowable-cxf module and is needed for the mock web service -->
