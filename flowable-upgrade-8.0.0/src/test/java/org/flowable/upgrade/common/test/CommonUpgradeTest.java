@@ -40,7 +40,7 @@ public class CommonUpgradeTest extends UpgradeTestCase {
     		
     	});
     	
-    	assertEquals("7.2.0.2", commonSchemaVersion);
+    	assertEquals("8.0.0.0", commonSchemaVersion);
         
     }
 }
