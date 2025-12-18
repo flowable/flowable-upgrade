@@ -24,7 +24,7 @@ import org.flowable.task.api.Task;
 import org.flowable.upgrade.RunOnlyWithTestDataFromVersion;
 import org.junit.Test;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.ObjectNode;
 
 @RunOnlyWithTestDataFromVersion(versions = {"5.17.0", "5.18.0", "5.19.0", "5.20.0", "5.21.0", "5.22.0"})
 public class UpgradeTaskOneTest extends UpgradeTestCase {
