@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="definitions" 
+  xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  targetNamespace="Upgrade">
+  
+  <process id="calledProcess">
+  
+    <startEvent id="theStart" />
+    
+    <sequenceFlow id="flow1" sourceRef="theStart" targetRef="subProcessTask" />
+  
+    <userTask id="subProcessTask" name="Task in subprocess" />
+    
+    <sequenceFlow id="flow2" sourceRef="subProcessTask" targetRef="theReceiveTask" />
+
+    <receiveTask id="theReceiveTask"/>
+
+    <sequenceFlow id="flow3" sourceRef="theReceiveTask" targetRef="theEnd" />
+
+    <endEvent id="theEnd" />
+    
+  </process>
+
+</definitions>

@@ -49,6 +49,7 @@
         <module>flowable-upgrade-7.1.0</module>
         <module>flowable-upgrade-7.2.0</module>
         <module>flowable-upgrade-8.0.0</module>
+        <module>flowable-upgrade-8.1.0</module>
     </modules>
 
     <dependencies>

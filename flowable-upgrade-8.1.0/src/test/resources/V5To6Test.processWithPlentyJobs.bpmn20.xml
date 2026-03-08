@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+    xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+    xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" 
+    typeLanguage="http://www.w3.org/2001/XMLSchema" 
+    expressionLanguage="http://www.w3.org/1999/XPath"
+    xmlns:flowable="http://flowable.org/bpmn"
+    targetNamespace="Upgrade">
+    <process id="plenty-of-jobs" name="AsyncProcess" isExecutable="true">
+        <sequenceFlow id="sid-124C118F-E214-47EE-B031-58055A7124E4" sourceRef="sid-18EC345F-B45D-4489-8849-C5E4F8222131" targetRef="sid-402CC36D-E403-405A-A5E6-DFE921255C3C" />
+        <serviceTask id="sid-402CC36D-E403-405A-A5E6-DFE921255C3C" name="A" flowable:async="true" flowable:exclusive="false" flowable:class="delegate.PlentyJobsTestDelegate" />
+        <sequenceFlow id="sid-7D04E0F6-A69E-4BB1-966D-BA21DA167ACF" sourceRef="sid-402CC36D-E403-405A-A5E6-DFE921255C3C" targetRef="sid-65A4F49B-B645-4192-A7BE-B09BC39BE194" />
+        <parallelGateway id="sid-65A4F49B-B645-4192-A7BE-B09BC39BE194" />
+        <sequenceFlow id="sid-981E9362-A4BB-4D19-A30D-2997632DAAC3" sourceRef="sid-65A4F49B-B645-4192-A7BE-B09BC39BE194" targetRef="sid-2C7F303F-212A-43C6-BCC9-8886EF9B8ED3" />
+        <serviceTask id="sid-DCA6E6C5-EE65-449E-AC80-56F5DEB02D58" name="After subprocess" flowable:async="true" flowable:exclusive="false" flowable:class="delegate.PlentyJobsTestDelegate" />
+        <sequenceFlow id="sid-6920DDB7-9E81-460B-A4F7-ED5ED9EE9416" sourceRef="sid-743C8980-59C8-4659-9F2E-50AC1B8644F2" targetRef="sid-DCA6E6C5-EE65-449E-AC80-56F5DEB02D58" />
+        <serviceTask id="sid-E3FE05F3-22BF-43F6-8D21-FA96ED00BF66" name="G" flowable:async="true" flowable:exclusive="false" flowable:class="delegate.PlentyJobsTestDelegate" />
+        <sequenceFlow id="sid-923575C2-3C46-4854-B77C-EC88329C3D59" sourceRef="sid-DCA6E6C5-EE65-449E-AC80-56F5DEB02D58" targetRef="sid-E3FE05F3-22BF-43F6-8D21-FA96ED00BF66" />
+        <sequenceFlow id="sid-47B93FBD-BA25-442F-B172-2D99CAFC03D9" sourceRef="sid-E3FE05F3-22BF-43F6-8D21-FA96ED00BF66" targetRef="sid-C85B26E7-7688-4220-9A53-87940A187891" />
+        <parallelGateway id="sid-C85B26E7-7688-4220-9A53-87940A187891" />
+        <serviceTask id="sid-921099A9-D082-4EC6-896B-E341D21D3FDF" name="H" flowable:async="true" flowable:class="delegate.PlentyJobsTestDelegate" />
+        <serviceTask id="sid-B8BC5A8B-BF47-4D6C-BCB0-27B055B27B72" name="I" flowable:async="true" flowable:class="delegate.PlentyJobsTestDelegate" />
+        <serviceTask id="sid-20BD367F-82FC-4BBB-91EC-5BDEF2F49CE7" name="J" flowable:async="true" flowable:class="delegate.PlentyJobsTestDelegate" />
+        <sequenceFlow id="sid-E217FF5E-4801-4984-8F6F-E5AE0F60CF23" sourceRef="sid-C85B26E7-7688-4220-9A53-87940A187891" targetRef="sid-921099A9-D082-4EC6-896B-E341D21D3FDF" />
+        <sequenceFlow id="sid-F74C4E95-908C-471B-95F8-28F98047A183" sourceRef="sid-C85B26E7-7688-4220-9A53-87940A187891" targetRef="sid-B8BC5A8B-BF47-4D6C-BCB0-27B055B27B72" />
+        <sequenceFlow id="sid-659DDC55-845B-438F-BD9F-5415251E4F72" sourceRef="sid-C85B26E7-7688-4220-9A53-87940A187891" targetRef="sid-20BD367F-82FC-4BBB-91EC-5BDEF2F49CE7" />
+        <sequenceFlow id="sid-9A3DF292-4307-443A-9921-7C284A5853A2" sourceRef="sid-921099A9-D082-4EC6-896B-E341D21D3FDF" targetRef="join4" />
+        <parallelGateway id="join4" flowable:async="true" />
+        <sequenceFlow id="sid-8204C71B-737A-4EE7-9BE7-1747C55C8F13" sourceRef="sid-B8BC5A8B-BF47-4D6C-BCB0-27B055B27B72" targetRef="join4" />
+        <sequenceFlow id="sid-33805B68-7F16-4D65-8E7A-42B3FC8B537D" sourceRef="sid-20BD367F-82FC-4BBB-91EC-5BDEF2F49CE7" targetRef="join4" />
+        <endEvent id="sid-D66EDA02-00FD-4208-AD44-2D5E0169668C" />
+        <sequenceFlow id="sid-878BD294-D400-4067-929A-942709739EA8" sourceRef="sid-2C7F303F-212A-43C6-BCC9-8886EF9B8ED3" targetRef="sid-D66EDA02-00FD-4208-AD44-2D5E0169668C" />
+        <serviceTask id="sid-EF41D378-F2DB-4FE5-82D5-1002D6B74484" name="K" flowable:async="true" flowable:exclusive="false" flowable:class="delegate.PlentyJobsTestDelegate" />
+        <sequenceFlow id="sid-BA3D42E3-B8BB-4C4A-BF11-31051B63294F" sourceRef="join4" targetRef="sid-EF41D378-F2DB-4FE5-82D5-1002D6B74484" />
+        <userTask id="sid-149B5F22-DA92-44C9-8420-B6141E5411DE" name="L" />
+        <sequenceFlow id="sid-801EABA4-6015-454F-A9F1-FA9B3C2C69F9" sourceRef="sid-EF41D378-F2DB-4FE5-82D5-1002D6B74484" targetRef="sid-149B5F22-DA92-44C9-8420-B6141E5411DE" />
+        <boundaryEvent id="sid-B446A406-4849-4829-84EB-124C3AA92DA1" attachedToRef="sid-149B5F22-DA92-44C9-8420-B6141E5411DE" cancelActivity="true">
+            <timerEventDefinition>
+                <timeDuration>PT10S</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+        <userTask id="sid-0D78D1C4-9365-4326-A5B8-1EBF57916A86" name="M" />
+        <sequenceFlow id="sid-0A4B7E4E-951C-423A-BC62-62834452AD3A" sourceRef="sid-B446A406-4849-4829-84EB-124C3AA92DA1" targetRef="sid-0D78D1C4-9365-4326-A5B8-1EBF57916A86" />
+        <endEvent id="sid-5662E3EB-7445-483C-9B68-D104ED0023DE" />
+        <sequenceFlow id="sid-33E28258-3EDC-401D-998C-80FBC23756BF" sourceRef="sid-149B5F22-DA92-44C9-8420-B6141E5411DE" targetRef="sid-5662E3EB-7445-483C-9B68-D104ED0023DE" />
+        <endEvent id="sid-44DE5168-E70F-4268-BD26-3D0327569F3B" />
+        <sequenceFlow id="sid-742CD9BA-3EDE-498C-B05B-129FF1471313" sourceRef="sid-0D78D1C4-9365-4326-A5B8-1EBF57916A86" targetRef="sid-44DE5168-E70F-4268-BD26-3D0327569F3B" />
+        <boundaryEvent id="sid-3DB81DB2-0429-4EE9-940F-63B346A9B9CB" attachedToRef="sid-0D78D1C4-9365-4326-A5B8-1EBF57916A86" cancelActivity="true">
+            <timerEventDefinition>
+                <timeDuration>PT10S</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+        <userTask id="sid-73C68C0C-868A-433B-B2A4-D820400ABCDD" name="N" />
+        <sequenceFlow id="sid-789E4DA4-AFFF-4293-9161-4391F3A7E766" sourceRef="sid-3DB81DB2-0429-4EE9-940F-63B346A9B9CB" targetRef="sid-73C68C0C-868A-433B-B2A4-D820400ABCDD" />
+        <boundaryEvent id="sid-60170F08-0976-474F-9CE9-754F68D2783D" attachedToRef="sid-73C68C0C-868A-433B-B2A4-D820400ABCDD" cancelActivity="true">
+            <timerEventDefinition>
+                <timeDuration>PT10S</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+        <userTask id="sid-B6871F44-0C98-4231-BE76-BA96DC798971" name="O" />
+        <sequenceFlow id="sid-B679C655-8450-486B-B940-9C3929DF25D6" sourceRef="sid-60170F08-0976-474F-9CE9-754F68D2783D" targetRef="sid-B6871F44-0C98-4231-BE76-BA96DC798971" />
+        <boundaryEvent id="sid-3E1844C1-A7C0-4AF2-A7FF-D28643CBF430" attachedToRef="sid-B6871F44-0C98-4231-BE76-BA96DC798971" cancelActivity="true">
+            <timerEventDefinition>
+                <timeDuration>PT10S</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+        <endEvent id="sid-87484379-8C8F-443F-B1E3-01DC70839CBB" />
+        <sequenceFlow id="sid-7CEA0659-3ED2-4E31-BDBD-56E0DA01CDD2" sourceRef="sid-73C68C0C-868A-433B-B2A4-D820400ABCDD" targetRef="sid-87484379-8C8F-443F-B1E3-01DC70839CBB" />
+        <endEvent id="sid-45E2C9F4-A6B1-4980-8F0A-99AED1E6B335" />
+        <sequenceFlow id="sid-A3B5C485-5CE6-4559-9122-ABCDA69285CC" sourceRef="sid-B6871F44-0C98-4231-BE76-BA96DC798971" targetRef="sid-45E2C9F4-A6B1-4980-8F0A-99AED1E6B335" />
+        <serviceTask id="sid-AC1E86D8-AC7A-466E-984A-F15CF5C8D595" name="J" flowable:async="true" flowable:exclusive="false"
+            flowable:class="delegate.PlentyJobsTestDelegate" />
+        <sequenceFlow id="sid-E66AC2D3-E467-4C10-8475-1C6869F2E298" sourceRef="sid-3E1844C1-A7C0-4AF2-A7FF-D28643CBF430" targetRef="sid-AC1E86D8-AC7A-466E-984A-F15CF5C8D595" />
+        <endEvent id="sid-C04E5D4E-6F57-424B-8543-E722E44EDD58" />
+        <sequenceFlow id="sid-EF6D21B0-288C-4E49-95F5-4926051DF9FE" sourceRef="sid-AC1E86D8-AC7A-466E-984A-F15CF5C8D595" targetRef="sid-C04E5D4E-6F57-424B-8543-E722E44EDD58" />
+        <startEvent id="sid-18EC345F-B45D-4489-8849-C5E4F8222131">
+            <timerEventDefinition>
+                <timeCycle>0 0/5 * * * ?</timeCycle>
+            </timerEventDefinition>
+        </startEvent>
+        <subProcess id="sid-2C7F303F-212A-43C6-BCC9-8886EF9B8ED3" name="subProcess">
+            <startEvent id="sid-06EE1D29-16DD-4FEC-B0D6-0B0C33608568" />
+            <parallelGateway id="sid-3828200A-EF2B-4C18-88EA-05794542C7C8" />
+            <serviceTask id="sid-677CFCA4-A571-4EC5-A0B7-7B85E569E7CD" name="B" flowable:async="true" flowable:class="delegate.PlentyJobsTestDelegate" />
+            <serviceTask id="sid-D20076C3-9F0D-4244-8E51-7EDFEB874344" name="C" flowable:async="true" flowable:class="delegate.PlentyJobsTestDelegate" />
+            <serviceTask id="sid-0090AB74-D407-4C5F-B58E-9EBE2BF40B46" name="D" flowable:async="true" flowable:class="delegate.PlentyJobsTestDelegate" />
+            <serviceTask id="sid-822FC040-00D5-4151-AE9C-024A033619C4" name="E" flowable:async="true" flowable:class="delegate.PlentyJobsTestDelegate" />
+            <serviceTask id="sid-C4C29D10-06CA-4565-842A-E9EE8A6877FE" name="F" flowable:async="true" flowable:class="delegate.PlentyJobsTestDelegate" />
+            <parallelGateway id="join1" flowable:async="true" />
+            <parallelGateway id="join2" flowable:async="true" />
+            <parallelGateway id="join3" flowable:async="true" />
+            <userTask id="sid-8BB236DE-2D79-4DF4-8D37-F3A9E55CD6BF" name="G" />
+            <endEvent id="sid-06FE287B-5405-4C89-81B1-EE8555E62C8F" />
+            <intermediateCatchEvent id="sid-CF31A291-0886-4966-AFE0-BAA57A4D31E2">
+                <timerEventDefinition>
+                    <timeDuration>PT10S</timeDuration>
+                </timerEventDefinition>
+            </intermediateCatchEvent>
+            <sequenceFlow id="sid-C203B543-5BBA-4934-ADD9-F678B7B29FA9" sourceRef="sid-06EE1D29-16DD-4FEC-B0D6-0B0C33608568" targetRef="sid-3828200A-EF2B-4C18-88EA-05794542C7C8" />
+            <sequenceFlow id="sid-AD3E2635-026E-46C1-BABE-0ECD1971C326" sourceRef="sid-3828200A-EF2B-4C18-88EA-05794542C7C8" targetRef="sid-677CFCA4-A571-4EC5-A0B7-7B85E569E7CD" />
+            <sequenceFlow id="sid-4E56D1E8-2FCF-4D72-84C9-910BBE081AD9" sourceRef="sid-3828200A-EF2B-4C18-88EA-05794542C7C8" targetRef="sid-D20076C3-9F0D-4244-8E51-7EDFEB874344" />
+            <sequenceFlow id="sid-04B4A968-C906-45C9-8EFD-0DED4E5C1F09" sourceRef="sid-3828200A-EF2B-4C18-88EA-05794542C7C8" targetRef="sid-0090AB74-D407-4C5F-B58E-9EBE2BF40B46" />
+            <sequenceFlow id="sid-CE15D589-58D0-4D07-AEE9-9FCC78E6BC7E" sourceRef="sid-3828200A-EF2B-4C18-88EA-05794542C7C8" targetRef="sid-822FC040-00D5-4151-AE9C-024A033619C4" />
+            <sequenceFlow id="sid-FA64B69F-31A0-4DA7-8619-640DA8099061" sourceRef="sid-3828200A-EF2B-4C18-88EA-05794542C7C8" targetRef="sid-C4C29D10-06CA-4565-842A-E9EE8A6877FE" />
+            <sequenceFlow id="sid-5B4DC179-3BE1-4A48-AE2A-93878B56EF7D" sourceRef="sid-677CFCA4-A571-4EC5-A0B7-7B85E569E7CD" targetRef="join1" />
+            <sequenceFlow id="sid-5E9E8ADD-25FD-46D3-9DEE-1EE0B957CADA" sourceRef="sid-D20076C3-9F0D-4244-8E51-7EDFEB874344" targetRef="join1" />
+            <sequenceFlow id="sid-AEB54679-6FDD-4C63-9BEE-1CC14ADC00A9" sourceRef="sid-0090AB74-D407-4C5F-B58E-9EBE2BF40B46" targetRef="join2" />
+            <sequenceFlow id="sid-9DA5EB22-6B64-487A-8320-DEEA0991FB86" sourceRef="sid-822FC040-00D5-4151-AE9C-024A033619C4" targetRef="join2" />
+            <sequenceFlow id="sid-01F86FC6-56B7-4D18-AD5D-31349A94CB60" sourceRef="sid-C4C29D10-06CA-4565-842A-E9EE8A6877FE" targetRef="join2" />
+            <sequenceFlow id="sid-8294E723-3EA2-4BE1-8C8E-612235900E8D" sourceRef="join1" targetRef="join3" />
+            <sequenceFlow id="sid-FA26D140-1824-40A6-82C5-AE6E21106EDF" sourceRef="join2" targetRef="join3" />
+            <sequenceFlow id="sid-DBF4DB23-E242-4992-B132-AC49901BE762" sourceRef="sid-8BB236DE-2D79-4DF4-8D37-F3A9E55CD6BF" targetRef="sid-06FE287B-5405-4C89-81B1-EE8555E62C8F" />
+            <sequenceFlow id="sid-00A35995-AFD9-4B48-A306-035F216E4AE8" sourceRef="join3" targetRef="sid-CF31A291-0886-4966-AFE0-BAA57A4D31E2" />
+            <sequenceFlow id="sid-8D9D509A-FA51-4F2B-89EF-DFDDD7211DF0" sourceRef="sid-CF31A291-0886-4966-AFE0-BAA57A4D31E2" targetRef="sid-8BB236DE-2D79-4DF4-8D37-F3A9E55CD6BF" />
+        </subProcess>
+        <boundaryEvent id="sid-743C8980-59C8-4659-9F2E-50AC1B8644F2" attachedToRef="sid-2C7F303F-212A-43C6-BCC9-8886EF9B8ED3" cancelActivity="true">
+            <timerEventDefinition>
+                <timeDuration>PT5M</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+    </process>
+</definitions>
