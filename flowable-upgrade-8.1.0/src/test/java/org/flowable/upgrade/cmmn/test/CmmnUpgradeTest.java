@@ -40,7 +40,7 @@ public class CmmnUpgradeTest extends UpgradeTestCase {
     		
     	});
     	
-    	assertEquals("8.0.0.0", cmmnSchemaVersion);
+    	assertEquals("8.1.0.0", cmmnSchemaVersion);
         
     }
 }

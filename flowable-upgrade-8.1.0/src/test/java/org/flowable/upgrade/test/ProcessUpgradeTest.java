@@ -39,7 +39,7 @@ public class ProcessUpgradeTest extends UpgradeTestCase {
     		
     	});
     	
-    	assertEquals("8.0.0.0", processSchemaVersion);
+    	assertEquals("8.1.0.0", processSchemaVersion);
         
     }
 }
