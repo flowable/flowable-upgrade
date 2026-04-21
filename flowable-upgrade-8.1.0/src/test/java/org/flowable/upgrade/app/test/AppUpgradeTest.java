@@ -40,7 +40,7 @@ public class AppUpgradeTest extends UpgradeTestCase {
     		
     	});
     	
-    	assertEquals("8.1.0.0", appSchemaVersion);
+    	assertEquals("8.1.0.1", appSchemaVersion);
         
     }
 }

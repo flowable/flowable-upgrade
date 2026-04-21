@@ -40,7 +40,7 @@ public class EventRegistryUpgradeTest extends UpgradeTestCase {
     		
     	});
     	
-    	assertEquals("8.1.0.0", eventRegistrySchemaVersion);
+    	assertEquals("8.1.0.1", eventRegistrySchemaVersion);
         
     }
 }

@@ -40,7 +40,7 @@ public class DmnUpgradeTest extends UpgradeTestCase {
     		
     	});
     	
-    	assertEquals("8.1.0.0", dmnSchemaVersion);
+    	assertEquals("8.1.0.1", dmnSchemaVersion);
         
     }
 }
